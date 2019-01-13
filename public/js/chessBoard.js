@@ -14,12 +14,15 @@ var c = canvas.getContext('2d');
 
 var chessRadius = 15; 
 var interval = (canvas.width - 2 * 20) / 18;
+var isBlack = true;
 drawChessBoard();
 drawStar();
 //var startingline 
 
 function drawChessBoard(){
-    //draw the outter line
+		var styling = c.fillStyle;
+    	//draw the outter line
+		c.fillStyle = '#000000';
         c.beginPath();
         c.moveTo(20,20);
         c.lineTo(20,canvas.height - 20);
@@ -37,10 +40,12 @@ function drawChessBoard(){
         c.lineTo(canvas.width-20,20+interval*i);
     }
 		c.stroke();
+		c.fillStyle = styling;
 }
 
 function drawStar(){
-    
+	var styling = c.fillStyle;
+	c.fillStyle = '#000000';
     //draw the dot 
     c.fillRect(20+interval*3-3,20+interval*3-3,6,6); 
     c.fillRect(20+interval*3-3,20+interval*9-3,6,6);
@@ -53,6 +58,7 @@ function drawStar(){
     c.fillRect(20+interval*15-3,20+interval*15-3,6,6);
     
     c.stroke();
+	c.fillStyle = styling;
 };
 
 
@@ -60,8 +66,10 @@ function Point(x,y){
     this.x = x;
     this.y = y;
 }
-var chessArr = [];
+var blackChessArr= [];
+var whiteChessArr= [];
 var pointArr = [];
+var color;
 for(var i=0;i<19;i++){
     for(var j=0;j<19;j++){
         var point = new Point(20+interval*i,20+interval*j);
@@ -85,14 +93,19 @@ function Chess(x,y){
                mouse.y - pointArr[i].y < interval/2 && mouse.y - pointArr[i].y > -interval/2){
                 this.x = pointArr[i].x; 
                 this.y = pointArr[i].y;  
-
             }
         }
 		
     }
 	this.click = function(){
-		var pos = {x:self.x,y:self.y};
-		chessArr.push(pos);
+		var pos = {
+			x:self.x,
+			y:self.y,
+		};
+		if(isBlack)
+			blackChessArr.push(pos);
+		else 
+			whiteChessArr.push(pos);
 	}
 	
 
@@ -102,18 +115,29 @@ function clearChessBoard(){
 		c.clearRect(0,0,canvas.width,canvas.height);
 		drawChessBoard();
         drawStar();
-		drawChess(chessArr);
+		drawChess(blackChessArr,whiteChessArr);
 }
 
 
-function drawChess(chessArray){
-	chessArray.forEach(function(chess){
+function drawChess(blackChessArr,whiteChessArr){
+	var styling = c.fillStyle;
+	blackChessArr.forEach(function(chess){
+		c.fillStyle = '#000000';
+		c.beginPath();
+		c.arc(chess.x, chess.y,chessRadius ,Math.PI*2,false);
+		c.stroke();
+		c.fill();
+	});
+	whiteChessArr.forEach(function(chess){
+		c.fillStyle = '#ffffff';
 		c.beginPath();
 		c.arc(chess.x, chess.y,chessRadius ,Math.PI*2,false);
 		c.stroke();
 		c.fill();
 	});
 
+	
+	c.fillStyle = styling;
 }
 
 var chess = new Chess();
@@ -126,7 +150,7 @@ canvas.addEventListener('mousemove',function(event){
 
 canvas.addEventListener('click', function(){
 	chess.click();
-	socket.emit('updateChess',chessArr,c.fillStyle);
+	socket.emit('updateChess',blackChessArr,whiteChessArr,isBlack);
 });
 (function animate(){
    
@@ -138,9 +162,11 @@ socket.on('connection', function(){
 	console.log('Connected to server');
 });
 
-socket.on('updateChess',function(newChessArr, styling){
-	chessArr = newChessArr;
-	c.fillStyle = styling;
+socket.on('updateChess',function(newBlackChessArr,newWhiteChessArr, updatedIsBlack){
+	whiteChessArr = newWhiteChessArr;
+	blackChessArr = newBlackChessArr;
+	isBlack = updatedIsBlack;
+	c.fillStyle = isBlack ? '#000000' : '#ffffff';
 	clearChessBoard();
 });
 

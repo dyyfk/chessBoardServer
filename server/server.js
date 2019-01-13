@@ -17,25 +17,20 @@ io.on('connection', (socket)=>{
 		console.log('User disconnected');
 	});
 	
-	socket.on('updateChess',(chess,styling)=>{
+	socket.on('updateChess',(blackChessArr,whiteChessArr,isBlack)=>{
 //		var uniqueChess = chess.filter((value, index, self)=>{
 //			console.log(self.indexOf(value) === index );
 //			
 //			return self.indexOf(value) === index;
 //		});
-		var newStyling = switchPlayer(styling);
-		socket.emit('updateChess', chess,newStyling);
+		var color = switchPlayer(isBlack);
+		socket.emit('updateChess', blackChessArr,whiteChessArr, color);
 	});
 	
 });
 
-function switchPlayer(styling){
-	console.log(styling==='#FFFFFF');
-	console.log(styling);
-	if(styling=== '#FFFFFF')
-		return '#000000';
-	else if (styling=== '#000000')
-		return '#FFFFFF';
+function switchPlayer(isBlack){
+	return !isBlack;
 }
 app.use(express.static(publicPath));
 
