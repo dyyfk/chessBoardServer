@@ -1,0 +1,83 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.chessBoard{
+	border: 1px solid black;
+	position: relative;
+}
+
+.chatBox{
+	right: auto;	
+	width: 100;
+	height: 50px;
+}
+.button-container{
+  	display:flex;
+	display: inline-block;
+	position: absolute;
+	right: auto;
+	justify-content:space-around;
+}
+button{
+	width: 100%;
+	display: block;
+	right:auto;
+
+	padding: 20px 50px;
+	
+	
+	color: #444444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+}
+button:hover{
+	
+	border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #333333;
+    background: #F7F7F7;
+}
+button:active {
+    box-shadow: inset 1px 1px 1px #DFDFDF;   
+}
+.img-container{
+
+	display: inline-block;
+	position: absolute;
+	right: 20px;
+}
+.player1,.player2{
+	padding: 50px 50px;
+	border: 1px solid black;
+
+}
+.dialogBox{
+	border: 1px solid black;
+	padding: 300px 60px;
+	display: inline-block;
+	position: absolute;
+	left: 65%;
+}
+.nav-container{
+	position: relative;
+	padding: 0 20px;
+    display:flex;
+    border-bottom: 1px solid black;
+    justify-content: space-between;
+}
+#options{
+	padding: 30px;
+}
+#options:hover{
+	color:#70798C;
+    transform: translateY(-10px);
+}
+
