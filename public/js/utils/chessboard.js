@@ -1,14 +1,16 @@
 const LINES = 19;
 
 class Chessboard{
-	constructor(interval, chessRadius,canvas) {
+	constructor(interval, chessRadius,canvas,width,height,color) {
 		this.canvas = canvas;
-		this.canvas.width = this.canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
 		this.radius = 15;
 		this.interval = interval; // interval between chess to chess
 		this.pointArr = new Array(LINES);
 		this.chessArr = new Array(LINES);
 		this.chessRadius = chessRadius;
+		this.width = width;
+		this.height = height;
+		this.color = color;
 		for(var i = 0;i<this.pointArr.length;i++){
 			this.pointArr[i] = new Array(LINES);
 		}
@@ -20,7 +22,7 @@ class Chessboard{
 			}
 		}
 	}
-	addChess(chess){
+	addChess(chessObj){
 		//TODO: Check for the new chess x and y
 		var x = chessObj.x;
 		var y = chessObj.y;
@@ -29,6 +31,7 @@ class Chessboard{
 			this.pointArr[x][y] = true;
 			this.chessArr[x][y].color = chess.color;
 		}
+		this.renderNewChessboard();
 	}
 	update(mouse){
 		for(var i =0;i<this.chessArr.length;i++){
@@ -38,7 +41,7 @@ class Chessboard{
 					var chessObj = {
 						x:i,
 						y:j,
-						chess:new Chess(this.chessArr[i][j].x,this.chessArr[i][j].y, this.chessRadius, '#e6e6e6')
+						chess:new Chess(this.chessArr[i][j].x,this.chessArr[i][j].y, this.chessRadius, this.color)
 					}
 
 					return chessObj;
@@ -46,14 +49,7 @@ class Chessboard{
 			}
 		}
 	}
-//	getDrawAttr(){
-//		var drawAttr = {
-//			radius: this.radius,
-//			interval: this.interval,
-//			chessRaidus: this.chessRadius
-//		}
-//		return drawAttr;
-//	}
+
 	getChess(){
 		return this.chessArr;
 	}
@@ -80,7 +76,7 @@ class Chessboard{
 		this.canvas.stroke();
 	}
 	renderNewChessboard(){
-		this.canvas.clearRect(0,0,this.canvas.width,this.canvas.height);
+		this.canvas.clearRect(0,0,this.width,this.height);
 		this.drawChessBoard();
         this.drawStar();
 		this.drawAllChess();
@@ -123,13 +119,14 @@ class Chessboard{
 	}
 	click(mouse){
 		var chessObj = this.update(mouse);
-		this.addChess(chessObj);
-		this.renderNewChessboard();
+		return chessObj;
 	}
 	hover(mouse){
 		var chessObj = this.update(mouse);
-		this.renderNewChessboard();
-		this.drawChess(chessObj.chess);
+		if(chessObj){
+			this.renderNewChessboard();
+			this.drawChess(chessObj.chess);
+		}
 	}
 	
 	

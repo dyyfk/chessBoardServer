@@ -5,44 +5,47 @@ const http = require('http');
 
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
-//const {Chess} = require('./utils/chess');
-//const {Chessboard} = require('./utils/chessboard');
+const {ChessRecord} = require('./utils/chessRecord');
 
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
 
-var blackChessArr = []; 
-var whiteChessArr = [];
-var color;
+var chessRecord = new ChessRecord();
+var socketID = []; //TODO: mock database
 io.on('connection', (socket)=>{
-	
-	
-	io.emit('updateChess', blackChessArr,whiteChessArr, color);
 
+//	var socketObj = {
+//		socketID: socket.id,
+//		color: '#000000' ? 
+//	}
+	socket.emit('initChess', chessRecord); //这里应该是socket
+	
 	console.log('New users connected');
 	
+//	socket.on('join', (room,callback)=>{
+//		
+//		
+//		
+//	});
+	
+	socket.on('click',(chessObj,color, callback)=>{
+		var x = chessObj.x;
+		var y = chessObj.y;
+		chessObj.color = color;
+		var result = chessRecord.addChess(x,y,color);
+		if(!result){
+			return callback('Cannot place chess on an existed one');
+		}
+		socket.broadcast.emit('updateChess',chessObj);
+		callback();
+	});
 	socket.on('disconnect',()=>{
 		console.log('User disconnected');
 	});
-	
-	socket.on('updateChess',(blackChess,whiteChess,isBlack)=>{ //ToDO:1.应该传过来的是一个棋子而不是整个array 2. 传过来的应该是point
-//		var uniqueChess = chess.filter((value, index, self)=>{ 
-//			console.log(self.indexOf(value) === index );
-//			
-//			return self.indexOf(value) === index;
-//		});
-		color = switchPlayer(isBlack);
-		blackChessArr = blackChess;
-		whiteChessArr = whiteChess;
-		io.emit('updateChess', blackChessArr,whiteChessArr, color);
-	});
-	
 });
 
-function switchPlayer(isBlack){
-	return !isBlack;
-}
+
 app.use(express.static(publicPath));
 
 server.listen(port,()=>{
