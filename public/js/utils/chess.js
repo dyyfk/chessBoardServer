@@ -5,11 +5,5 @@ class Chess {
 		this.color = color;
 		this.radius = radius;
 	}
-//	getPosition(){
-//		return {
-//			x: this.x,
-//			y: this.y
-//		}
-//	}
 }
  

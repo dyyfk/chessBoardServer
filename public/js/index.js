@@ -2,6 +2,7 @@ var socket = io();
 
 //------- begin of the chessBoard -------
 var canvas = document.querySelector('.chessBoard');
+	canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
 
 
 var c = canvas.getContext('2d');
@@ -14,6 +15,8 @@ const interval = (canvas.width - 2 * 20) / 18;
 var chessBoard = new Chessboard(interval, chessRadius,c);
 chessBoard.renderNewChessboard();
 var isBlack = true;
+
+
 
 //
 //
@@ -69,10 +72,10 @@ canvas.addEventListener('mousemove',function(event){
 	chessBoard.hover(event); //TODO: add a color the hovering chess
 });
 
-canvas.addEventListener('click', function(){
-	chess.click();
-	socket.emit('updateChess',blackChessArr,whiteChessArr,isBlack);
-});
+//canvas.addEventListener('click', function(){
+//	chess.click();
+//	socket.emit('updateChess',blackChessArr,whiteChessArr,isBlack);
+//});
 
 //(function animate(){
 //    requestAnimationFrame(animate);

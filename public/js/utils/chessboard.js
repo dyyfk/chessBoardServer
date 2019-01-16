@@ -3,8 +3,7 @@ const LINES = 19;
 class Chessboard{
 	constructor(interval, chessRadius,canvas) {
 		this.canvas = canvas;
-		this.canvas.width = this.canvas.height = innerHeight>innerWidth ? innerWidth : innerHeight;
-
+		this.canvas.width = this.canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
 		this.radius = 15;
 		this.interval = interval; // interval between chess to chess
 		this.pointArr = new Array(LINES);
