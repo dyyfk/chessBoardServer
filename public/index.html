@@ -1,46 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
+<!DOCTYPE>
 
-    </style>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<link type="text/css" rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Go chess app</title>	
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body class="centered-form">
+		<div class="centered-form__form">
+			<form action="/chessRoom.html">
+				<div class="form-field">
+					<h3>Join a Room for playing GO chess</h3>
+				</div>
+				<div class="form-field">
+					<label>Display name</label>
+					<input type="text" name="name" autofocus/>
+				</div>
 <!--
-	<div class="nav-container">
-		<nav>
-			<i class="fas fa-cog" id ="options"></i>
-		</nav>
-	</div>
+				<div class="form-field">
+					<label>Join Room</label>
+					<div id="room-list" name="roomJoined">
+						<input type="checkbox" name="placeholder">
+					</div>
+				</div>
 -->
+				<div class="form-field">
+					<label>Create Room</label>
+					<input type="text" placeholder="Enter new room name" name="roomCreated" />
+				</div>
+				<input style="display: inline-flex" type="checkbox" name="player" checked="checked" /> 
+				<div class="form-field" style="display: inline-flex">
+					<label>Join as player?</label>
 
-    <canvas class="chessBoard">
-    
-    
-    </canvas>
-
-
-<!--
-	<div class="button-container">
-		<button class="request1" type ="button">jugdment</button>
-		<button class="request2" type ="button">resign</button>
-		<button class="request3" type ="button">call a draw</button>
-	</div>
-	<div class = "dialogBox">
-	</div>
-	<div class="img-container">
-		<img class = "player1" alt="black">
-		<img class = "player2" alt ="white">
-	</div>
-	<input class="chatBox" type="text" placeholder="Chat to your opponent">	
--->	
-	<script src ="socket.io/socket.io.js"></script>
-	<script src="js/utils/chess.js"></script>
-	<script src="js/utils/chessboard.js"></script>
-    <script src = "js/index.js"></script>
-</body>
+					<button>Join</button>
+					
+				</div>
+			</form>
+		</div>
+		<script src ="js/libs/jquery-3.3.1.min.js"></script>
+		<script src ="js/libs/deparam.js"></script>
+		<script src ="socket.io/socket.io.js"></script>
+		<script src ="js/index.js"></script>
+	</body>
+	
 </html>

@@ -1,6 +1,9 @@
-Class User{
-	constructor(id){
+class User{
+	constructor(id, name, room,isPlyaer){
 		this.id = id;
+		this.name = name;
+		this.room = room;
+		this.isPlyaer = isPlyaer;
 	} 
  	addOpponent(opponentID){
 		if(!opponentID)
@@ -14,15 +17,9 @@ Class User{
 		else
 			return 'this user does not have an opponent yet';
 	}
- 	getOpponent(){
+ 	getOpponentID(){
  		return this.opponentID;
  	}
-	getAllIDs(){
-		var ids = [];
-		ids.push(this.id);
-		ids.push(this.opponentID);
-		return ids;
-	}
 }
 
 module.exports = {User};
