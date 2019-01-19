@@ -60,13 +60,12 @@ socket.on('connect', function(){
 	console.log('Connected to server');
 	var param = jQuery.deparam(window.location.search);
 	console.log(param);
-	socket.emit('join',param, function(err,color){
+	socket.emit('join',param, function(err){
 		if(err){
 			alert(err);
 			window.location.href = '/';
 		}else{
 			console.log('No error');
-			createChessBoard(color);
 		}
 	});
 		console.log('Connected to server');

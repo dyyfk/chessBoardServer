@@ -1,9 +1,9 @@
 class User{
-	constructor(id, name, room,isPlyaer){
+	constructor(id, name, room,isPlayer){
 		this.id = id;
 		this.name = name;
 		this.room = room;
-		this.isPlyaer = isPlyaer;
+		this.isPlayer = isPlayer;
 	} 
  	addOpponent(opponentID){
 		if(!opponentID)

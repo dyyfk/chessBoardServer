@@ -4,12 +4,13 @@ class Users{
 	constructor(){
 		this.users = [];
 	} 
- 	addUser(userObj){
-		this.users.push(userObj);
+ 	addUser(id,name,room,isPlayer){
+		var user = new User(id,name,room,isPlayer);
+		this.users.push(user);
  	}
  	removeUser(id){
 		var user = this.getUser(id);
- 
+ 	
  		if(user){
  			this.users = this.users.filter((user)=> user.id !== id);
  		}
@@ -23,6 +24,11 @@ class Users{
 //  		var usersName = users.map((user) => user.name); 
  		return users;
  	}
+	getPlayerList(room){
+		var players = this.users.filter((user) => user.isPlayer === true);
+
+		return players;
+	}
 }
 
 module.exports = {Users};

@@ -13,7 +13,16 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
+    "nodemon": "^1.18.9",
     "socket.io": "^2.2.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dyyfk/chessBoardServer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dyyfk/chessBoardServer/issues"
+  },
+  "homepage": "https://github.com/dyyfk/chessBoardServer#readme",
   "description": ""
 }
