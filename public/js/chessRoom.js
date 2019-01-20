@@ -59,7 +59,6 @@ function createChessBoard(color){
 socket.on('connect', function(){
 	console.log('Connected to server');
 	var param = jQuery.deparam(window.location.search);
-	console.log(param);
 	socket.emit('join',param, function(err){
 		if(err){
 			alert(err);
@@ -68,7 +67,7 @@ socket.on('connect', function(){
 			console.log('No error');
 		}
 	});
-		console.log('Connected to server');
+	console.log('Connected to server');
 });
 socket.on('gameBegin',function(color){
 	createChessBoard(color);

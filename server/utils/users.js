@@ -26,7 +26,6 @@ class Users{
  	}
 	getPlayerList(room){
 		var players = this.users.filter((user) => user.isPlayer === true);
-
 		return players;
 	}
 }
