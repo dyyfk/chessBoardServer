@@ -14,7 +14,7 @@ const INTERVAL = (canvas.width - 2 * 20) / 18;
 var chessBoard;
 
 function createChessBoard(color){
-	var chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color);
+	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color);
 	chessBoard.renderNewChessboard();
 	canvas.addEventListener('mousemove',function(event){
 		chessBoard.hover(event); //TODO: add a color the hovering chess
