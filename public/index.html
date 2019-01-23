@@ -9,13 +9,13 @@
 	</head>
 	<body class="centered-form">
 		<div class="centered-form__form">
-			<form action="/chessRoom.html">
+			<form method = "post">
 				<div class="form-field">
 					<h3>Join a Room for playing GO chess</h3>
 				</div>
 				<div class="form-field">
 					<label>Display name</label>
-					<input type="text" name="name" autofocus/>
+					<input id="name-field" type="text" autofocus/>
 				</div>
 <!--
 				<div class="form-field">
@@ -27,13 +27,13 @@
 -->
 				<div class="form-field">
 					<label>Create Room</label>
-					<input type="text" placeholder="Enter new room name" name="roomCreated" />
+					<input id="room-field" type="text" placeholder="Enter new room name" name="roomCreated" />
 				</div>
-				<input style="display: inline-flex" type="checkbox" name="player" checked="checked" /> 
+				<input id="player-field" style="display: inline-flex" type="checkbox" checked="checked" /> 
 				<div class="form-field" style="display: inline-flex">
 					<label>Join as player?</label>
 
-					<button>Join</button>
+					<button id="join-btn">Join</button>
 					
 				</div>
 			</form>

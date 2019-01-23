@@ -1,3 +1,45 @@
+var socket = io();
+
+$(function(){
+
+	$('#join-btn').on('click',function(e){
+		window.location.href = '/chessRoom.html';
+
+		e.preventDefault();
+		
+		var name = $('#name-field');
+		var room = $('#room-field');
+		var player = $('#player-field');
+		socket.emit('join',	{
+			room: room.val(),
+			name: name.val(),
+			isPlayer: player.val() === 'on' ? true : false
+		}, function(err){
+				if(err){
+					return alert(err);
+				}
+			}
+		);
+//	
+//	$('#join-btn').on('click',function(e){
+//		
+//	});
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //var socket = io();
 //
 //socket.on('updateRoomList',function(rooms){

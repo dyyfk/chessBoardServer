@@ -54,19 +54,9 @@ function createChessBoard(color){
 		chessBoard.addChess(chessObj);
 	});
 }
-
+//-----end of the chessBoard ----
 
 socket.on('connect', function(){
-	console.log('Connected to server');
-	var param = jQuery.deparam(window.location.search);
-	socket.emit('join',param, function(err){
-		if(err){
-			alert(err);
-			window.location.href = '/';
-		}else{
-			console.log('No error');
-		}
-	});
 	console.log('Connected to server');
 });
 socket.on('gameBegin',function(color){
@@ -77,7 +67,6 @@ socket.on('gameBegin',function(color){
 socket.on('disconnect',function(){
 	console.log('Connection lost');
 });
-//-----end of the chessBoard ----
 
-//var resignButton = document.getElementById('resignButton');
+
 

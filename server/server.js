@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const socketIO = require('socket.io');
 const http = require('http');
+const bodyParser = require('body-parser');
 
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
@@ -9,26 +10,36 @@ const {ChessRecords} = require('./utils/chessRecords');
 const {Users} = require('./utils/users');
 
 var app = express();
+app.use(express.static(publicPath));
+app.use(bodyParser.json());
+
 var server = http.createServer(app);
 var io = socketIO(server);
+
 var users = new Users();
 const Color = {"black":'#000000',"white":'#ffffff'};
 var chessRecords = new ChessRecords();
+
 io.on('connection', (socket)=>{
 //	socket.emit('initChess', chessRecord);
 
 	console.log('New users connected');
 	
 	socket.on('join', (params,callback)=>{
-		var roomSelected = params.roomJoined || params.roomCreated;
-		var isPlayer = params.player === 'on' ? true : false;
-		socket.join(roomSelected);
+//		var {name, room, isPlayer} = params;
+		var name = params.name;
+		var room = params.room;
+		var isPlayer = params.isPlayer;
+		
+		socket.join(room);
 
 		users.removeUser(socket.id);
-		users.addUser(socket.id,params.name,roomSelected,isPlayer);
-		var userInRoom = users.getUserList(roomSelected);
-		var playerInRoom = users.getPlayerList(roomSelected);
-
+		users.addUser(socket.id,name,room,isPlayer);
+		var userInRoom = users.getUserList(room);
+		var playerInRoom = users.getPlayerList(room);
+		
+		console.log(playerInRoom);
+		
 		if(playerInRoom.length>2){
 			return callback('this room has already 2 players');
 		}else if(playerInRoom.length<=1){
@@ -36,7 +47,7 @@ io.on('connection', (socket)=>{
 		}else if(playerInRoom.length==2){
 			console.log('Game Started');
 
-			chessRecords.addRecord(socket.id, roomSelected);
+			chessRecords.addRecord(socket.id, room);
 			var isBlack = Math.random() > 0.5 ? true : false;
 			var counter = 0;
 			playerInRoom.forEach((player)=>{
@@ -45,7 +56,6 @@ io.on('connection', (socket)=>{
 				isBlack = !isBlack; // assign a different color to another player
 			});
 		}
-			console.log(chessRecords);
 
 		callback();
 	});
@@ -85,7 +95,6 @@ io.on('connection', (socket)=>{
 });
 
 
-app.use(express.static(publicPath));
 
 server.listen(port,()=>{
 	console.log(`listening to the port ${port}`);
