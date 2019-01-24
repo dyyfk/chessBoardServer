@@ -33,7 +33,7 @@ io.on('connection', (socket)=>{
 		
 		socket.join(room);
 
-		users.removeUser(socket.id);
+//		users.removeUser(socket.id);
 		users.addUser(socket.id,name,room,isPlayer);
 		var userInRoom = users.getUserList(room);
 		var playerInRoom = users.getPlayerList(room);

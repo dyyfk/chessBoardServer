@@ -2,7 +2,6 @@
 $(function(){
 
 	$('#join-btn').on('click',function(e){
-		window.location.href = '/chessRoom.html';
 
 		e.preventDefault();
 		
@@ -17,6 +16,7 @@ $(function(){
 				if(err){
 					return alert(err);
 				}
+				window.location.href = '/chessRoom.html';
 			}
 		);
 //	
