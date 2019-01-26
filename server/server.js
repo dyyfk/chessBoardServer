@@ -46,12 +46,12 @@ io.on('connection', (socket)=>{
 			console.log('Waiting for another player');
 		}else if(playerInRoom.length==2){
 			console.log('Game Started');
-
 			chessRecords.addRecord(socket.id, room);
 			var isBlack = Math.random() > 0.5 ? true : false;
 			var counter = 0;
 			playerInRoom.forEach((player)=>{
 				var color = counter++ === 0 ? Color.black : Color.white;
+				
 				io.to(player.id).emit('gameBegin', color);
 				isBlack = !isBlack; // assign a different color to another player
 			});

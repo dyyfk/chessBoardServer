@@ -1,6 +1,5 @@
-
+var socket = io();
 $(function(){
-
 	$('#join-btn').on('click',function(e){
 
 		e.preventDefault();
@@ -8,21 +7,20 @@ $(function(){
 		var name = $('#name-field');
 		var room = $('#room-field');
 		var player = $('#player-field');
-		socket.emit('join',	{
+		$('.centered-form__form').hide();
+		$('#chessBoard').load( '/chessRoom.html' ,function(){
+			socket.emit('join',	{
 			room: room.val(),
 			name: name.val(),
 			isPlayer: player.val() === 'on' ? true : false
-		}, function(err){
-				if(err){
-					return alert(err);
+			}, function(err){
+					if(err){
+						window.location.href = '/';
+						alert(err);
+					}
 				}
-				window.location.href = '/chessRoom.html';
-			}
-		);
-//	
-//	$('#join-btn').on('click',function(e){
-//		
-//	});
+			);
+		});
 	});
 });
 

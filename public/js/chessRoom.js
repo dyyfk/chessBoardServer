@@ -1,3 +1,4 @@
+
 var socket = io();
 
 //------- begin of the chessBoard -------
@@ -31,9 +32,6 @@ function createChessBoard(color){
 		}
 	});
 
-	(function animate(){
-		requestAnimationFrame(animate);
-	})();
 	
 	socket.on('initChess',function(chessRecord){
 		for(var i =0;i<chessRecord.colorArr.length;i++){
