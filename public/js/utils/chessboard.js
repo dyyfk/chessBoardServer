@@ -19,7 +19,7 @@ class Chessboard{
 		for(var i=0;i<this.chessArr.length;i++){
 			this.chessArr[i] = new Array(LINES);
     		for(var j=0;j<this.chessArr[i].length;j++){
-        		var chess = new Chess(this.originX+interval*i,this.originY+interval*j, chessRadius, undefined);
+        		var chess = new Chess(20+interval*i,20+interval*j, chessRadius, undefined);
         		this.chessArr[i][j] = chess;
 			}
 		}
