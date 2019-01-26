@@ -5,6 +5,9 @@ var socket = io();
 var canvas = document.querySelector('.chessBoard');
 canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
 
+var rect = canvas.getBoundingClientRect();
+console.log(rect.top, rect.right, rect.bottom, rect.left);
+
 
 var c = canvas.getContext('2d');
 
@@ -13,6 +16,13 @@ const CHESS_RADIUS = 15;
 const INTERVAL = (canvas.width - 2 * 20) / 18;
 
 var chessBoard;
+
+function clickSound(){
+	var sound = new Audio('assets/sounds/firststone.mp3');
+	sound.play();
+}
+//TODO: this should be a utility function
+
 
 function createChessBoard(color){
 	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color);
@@ -26,7 +36,8 @@ function createChessBoard(color){
 		if(chessObj){
 			socket.emit('click',chessObj,color,function(err){
 				if(!err){
-					chessBoard.addChess(chessObj);   
+					chessBoard.addChess(chessObj); 
+					clickSound();
 				}
 			});
 		}
@@ -50,6 +61,7 @@ function createChessBoard(color){
 
 	socket.on('updateChess',function(chessObj){
 		chessBoard.addChess(chessObj);
+		clickSound();
 	});
 }
 //-----end of the chessBoard ----

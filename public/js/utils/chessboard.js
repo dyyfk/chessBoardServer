@@ -1,7 +1,7 @@
 const LINES = 19;
 
 class Chessboard{
-	constructor(interval, chessRadius,canvas,width,height,color) {
+	constructor(interval, chessRadius,canvas,width,height,color,originX,originY) {
 		this.canvas = canvas;
 		this.radius = 15;
 		this.interval = interval; // interval between chess to chess
@@ -11,13 +11,15 @@ class Chessboard{
 		this.width = width;
 		this.height = height;
 		this.color = color;
+		this.originX = originX;
+		this.originY = originY;
 		for(var i = 0;i<this.pointArr.length;i++){
 			this.pointArr[i] = new Array(LINES);
 		}
 		for(var i=0;i<this.chessArr.length;i++){
 			this.chessArr[i] = new Array(LINES);
     		for(var j=0;j<this.chessArr[i].length;j++){
-        		var chess = new Chess(20+interval*i,20+interval*j, chessRadius, undefined);
+        		var chess = new Chess(this.originX+interval*i,this.originY+interval*j, chessRadius, undefined);
         		this.chessArr[i][j] = chess;
 			}
 		}
@@ -128,6 +130,5 @@ class Chessboard{
 			this.drawChess(chessObj.chess);
 		}
 	}
-	
 	
 }

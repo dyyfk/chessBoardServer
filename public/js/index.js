@@ -13,7 +13,7 @@ $(function(){
 			room: room.val(),
 			name: name.val(),
 			isPlayer: player.val() === 'on' ? true : false
-			}, function(err){
+		}, function(err){
 					if(err){
 						window.location.href = '/';
 						alert(err);
