@@ -25,7 +25,8 @@ class Users{
  		return users;
  	}
 	getPlayerList(room){
-		var players = this.users.filter((user) => user.isPlayer === true);
+		var players = this.users.filter(
+			(user) => user.isPlayer === true && user.room === room);
 		return players;
 	}
 }

@@ -13,6 +13,7 @@ class Chessboard{
 		this.color = color;
 		this.originX = originX;
 		this.originY = originY;
+
 		for(var i = 0;i<this.pointArr.length;i++){
 			this.pointArr[i] = new Array(LINES);
 		}

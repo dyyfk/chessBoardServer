@@ -7,8 +7,9 @@ $(function(){
 		var name = $('#name-field');
 		var room = $('#room-field');
 		var player = $('#player-field');
-		$('.centered-form__form').hide();
-		$('#chessBoard').load( '/chessRoom.html' ,function(){
+		$('.centered-form__form').remove();
+		$('body').removeClass('centered-form');
+		$('.chessBoard-box').load( '/chessRoom.html' ,function(){
 			socket.emit('join',	{
 			room: room.val(),
 			name: name.val(),

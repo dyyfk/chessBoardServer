@@ -5,7 +5,11 @@ var socket = io();
 var canvas = document.querySelector('.chessBoard');
 canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
 
-var rect = canvas.getBoundingClientRect();
+
+			var rect = document.querySelector('.chessBoard-box').getBoundingClientRect();
+console.log(rect.top, rect.right, rect.bottom, rect.left);
+
+			var rect = canvas.getBoundingClientRect();
 console.log(rect.top, rect.right, rect.bottom, rect.left);
 
 
@@ -14,6 +18,9 @@ var c = canvas.getContext('2d');
 
 const CHESS_RADIUS = 15; 
 const INTERVAL = (canvas.width - 2 * 20) / 18;
+
+
+
 
 var chessBoard;
 
@@ -71,6 +78,7 @@ socket.on('connect', function(){
 });
 socket.on('gameBegin',function(color){
 	createChessBoard(color);
+
 });
 
 
