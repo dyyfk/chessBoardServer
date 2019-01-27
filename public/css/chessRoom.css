@@ -6,6 +6,7 @@
 
 .chessBoard{
 	border: 1px solid black;
+	background: linear-gradient(to right bottom, #ffefba, #fff3c8);
 	position: relative;
 }
 

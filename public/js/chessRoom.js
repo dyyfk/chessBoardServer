@@ -9,7 +9,7 @@ canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.inn
 			var rect = document.querySelector('.chessBoard-box').getBoundingClientRect();
 console.log(rect.top, rect.right, rect.bottom, rect.left);
 
-			var rect = canvas.getBoundingClientRect();
+			rect = canvas.getBoundingClientRect();
 console.log(rect.top, rect.right, rect.bottom, rect.left);
 
 
@@ -25,7 +25,7 @@ const INTERVAL = (canvas.width - 2 * 20) / 18;
 var chessBoard;
 
 function clickSound(){
-	var sound = new Audio('assets/sounds/firststone.mp3');
+	var sound = new Audio('./assets/sounds/firststone.mp3');
 	sound.play();
 }
 //TODO: this should be a utility function
