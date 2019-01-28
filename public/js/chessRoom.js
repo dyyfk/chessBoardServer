@@ -60,7 +60,7 @@ function createChessBoard(color){
 						y:j,
 						chess: new Chess(i,j,CHESS_RADIUS,chessRecord.colorArr[i][j])
 					}
-				   chessBoard.addChess(chessObj);
+				   	chessBoard.addChess(chessObj);
 				}
 			}
 		}
@@ -78,9 +78,11 @@ socket.on('connect', function(){
 });
 socket.on('gameBegin',function(color){
 	createChessBoard(color);
-
 });
 
+socket.on('waitingPlayer',function(){
+	$('.message').append('Waiting for players');
+});
 
 socket.on('disconnect',function(){
 	console.log('Connection lost');

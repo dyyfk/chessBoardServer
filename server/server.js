@@ -44,6 +44,7 @@ io.on('connection', (socket)=>{
 			return callback('this room has already 2 players');
 		}else if(playerInRoom.length<=1){
 			console.log('Waiting for another player');
+			socket.emit('waitingPlayer');
 		}else if(playerInRoom.length==2){
 			console.log('Game Started');
 			chessRecords.addRecord(socket.id, room);

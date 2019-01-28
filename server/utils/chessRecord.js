@@ -23,61 +23,67 @@ class ChessRecord{
 		}
 		
 		
+		this.colorArr[x][y] = color; // assign color first so it is easier to count escape
+
+		
 		var escape = this.calculateEscape(x,y,color);   // capture case
 		
 		if(escape === 0) {
+			this.colorArr[x][y] = undefined;
 			return 'No escape, Cannot place chess here';
+			// bug here, sometimes can eat chess with 0 escape
 		}
+		
+
 		
 		var capturedChess = this.determineCapture(x,y,color);
+		capturedChess.forEach((chess)=>{
+			var x = chess.x;
+			var y = chess.y;
+			this.colorArr[x][y] = undefined; // mark the chess being eaten as undefined
+		});
 		
-//		console.log(capturedChess);
+		this.nextRound = this.nextRound === Color.black ? Color.white : Color.black;
 		
-		
-		this.colorArr[x][y] = color;
-		this.nextRound = this.nextRound === Color.black ? Color.white : Color.black;	
 	}
 	determineCapture(x,y,color){
-		var escape;
-		if(x-1>=0&&this.colorArr[x-1][y]&&this.colorArr[x-1][y]!==color){
-			escape = this.calculateEscape(x-1,y,color);
+		color = color === Color.black ? Color.white : Color.black;
+		var joinedChess = [];
+		if(x-1>=0&&this.colorArr[x-1][y]===color){
+			var escape = this.calculateEscape(x-1,y,color);
+			
 			if(escape===0){
-				console.log('captured1');
-				return this.joinedChess;
+				joinedChess.push(...this.joinedChess);
 			}
 		}
-		if(x+1<LINES&&this.colorArr[x+1][y]&&this.colorArr[x+1][y]!==color){
-			escape = this.calculateEscape(x+1,y,color);
-			if(escape===0){
-				console.log('captured2');
+		if(x+1<LINES&&this.colorArr[x+1][y]===color){
+			var escape = this.calculateEscape(x+1,y,color);
 
-				return this.joinedChess;
+			if(escape===0){
+				joinedChess.push(...this.joinedChess);
 			}
 		}
-		if(y-1>=0&&this.colorArr[x][y-1]&&this.colorArr[x][y-1]!==color){
-			escape = this.calculateEscape(x,y-1,color);
-			if(escape===0){
-				console.log('captured3');
+		if(y-1>=0&&this.colorArr[x][y-1]===color){
+			var escape = this.calculateEscape(x,y-1,color);
 
-				return this.joinedChess;
-			}
-		}
-		if(y+1<LINES&&this.colorArr[x][y+1]&&this.colorArr[x][y+1]!==color){
-			escape = this.calculateEscape(x,y+1,color);
 			if(escape===0){
-				console.log('captured4');
-				
-				return this.joinedChess;
+				joinedChess.push(...this.joinedChess);
 			}
 		}
+		if(y+1<LINES&&this.colorArr[x][y+1]===color){
+			var escape = this.calculateEscape(x,y+1,color);
+
+			if(escape===0){
+				joinedChess.push(...this.joinedChess);
+			}
+		}
+		return joinedChess;
 		
 	}
 	calculateEscape(x,y,color){
 		this.joinedChess = [];  // initialize so that it could count the joined pieces
-		this.colorArr[x][y] = color; // assign color so it is easier to count escape
 
 		var escape = this.calculateHelper(x,y,color,0);
-		this.colorArr[x][y] = undefined;
 		return escape;
 	}
 	calculateHelper(x,y,color,escape,from){

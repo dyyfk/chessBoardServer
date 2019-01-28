@@ -1,15 +1,18 @@
+/*
 *{
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 }
+*/
 
 .chessBoard{
 	border: 1px solid black;
 	background: linear-gradient(to right bottom, #ffefba, #fff3c8);
-	position: relative;
+/*	position: relative;*/
 }
 
+/*
 .chatBox{
 	right: auto;	
 	width: 100;
@@ -81,4 +84,5 @@ button:active {
 	color:#70798C;
     transform: translateY(-10px);
 }
+*/
 
