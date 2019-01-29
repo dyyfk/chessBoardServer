@@ -25,8 +25,7 @@ const INTERVAL = (canvas.width - 2 * 20) / 18;
 var chessBoard;
 
 function clickSound(){
-	var sound = new Audio('./assets/sounds/firststone.mp3');
-	sound.play();
+	$("#clickSound")[0].play();
 }
 //TODO: this should be a utility function
 
