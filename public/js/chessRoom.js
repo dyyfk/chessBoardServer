@@ -41,9 +41,11 @@ function createChessBoard(color){
 	canvas.addEventListener('click', function(event){
 		var chessObj = chessBoard.click(event);
 		if(chessObj){
-			socket.emit('click',chessObj,color,function(err){
+			socket.emit('click',chessObj,color,function(err,chessRecord){
+//						console.log(chessRecord);
+
 				if(!err){
-					chessBoard.addChess(chessObj); 
+					chessBoard.renderNewChessboard(chessRecord);
 					clickSound();
 				}
 			});
@@ -55,19 +57,15 @@ function createChessBoard(color){
 		for(var i =0;i<chessRecord.colorArr.length;i++){
 			for(var j =0;j<chessRecord.colorArr[i].length;j++){
 				if(chessRecord.colorArr[i][j]){
-					var chessObj = {
-						x:i,
-						y:j,
-						chess: new Chess(i,j,CHESS_RADIUS,chessRecord.colorArr[i][j])
-					}
-				   	chessBoard.addChess(chessObj);
+				   	chessBoard.addChess(i,j,chessRecord.colorArr[i][j]);
 				}
 			}
 		}
 	});
 
-	socket.on('updateChess',function(chessObj){
-		chessBoard.addChess(chessObj);
+	socket.on('updateChess',function(chessRecord){
+//		console.log(chessRecord);
+		chessBoard.renderNewChessboard(chessRecord);
 		clickSound();
 	});
 }

@@ -66,18 +66,20 @@ io.on('connection', (socket)=>{
 		var y = chessObj.y;
 		chessObj.color = color;
 		var user = users.getUser(socket.id);
+		var chessRecord;
+
 		if(user){
 			var room = user.room;
-			var chessRecord = chessRecords.getRoomRecord(room);
-
+			chessRecord = chessRecords.getRoomRecord(room);
 			var err = chessRecord.addChess(x,y,color);
 			if(err){
 				return callback(err);
 			}
-			socket.to(room).emit('updateChess',chessObj); //TODO: update the chess to the other user
+			chessRecord = chessRecords.getRoomRecord(room);
+			socket.to(room).emit('updateChess',chessRecord); //TODO: update the chess to the other user
 		}
 
-		callback();
+		callback(undefined,chessRecord);
 	});
 	socket.on('disconnect',()=>{
 		console.log('User disconnected');

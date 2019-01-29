@@ -11,10 +11,10 @@ $(function(){
 		$('body').removeClass('centered-form');
 		$('.chessBoard-box').load( '/chessRoom.html' ,function(){
 			socket.emit('join',	{
-			room: room.val(),
-			name: name.val(),
-			isPlayer: player.val() === 'on' ? true : false
-		}, function(err){
+				room: room.val(),
+				name: name.val(),
+				isPlayer: player.val() === 'on' ? true : false
+			}, function(err){
 					if(err){
 						window.location.href = '/';
 						alert(err);

@@ -88,7 +88,7 @@ class ChessRecord{
 	}
 	calculateHelper(x,y,color,escape,from){
 		if(!this.colorArr[x][y]){
-			++escape; // no chess here
+			escape++; // no chess here
 		}else if(this.colorArr[x][y]!==color){
 			return escape; // no the same chess 
 		}

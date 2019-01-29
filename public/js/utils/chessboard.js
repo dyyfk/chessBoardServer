@@ -13,30 +13,30 @@ class Chessboard{
 		this.color = color;
 		this.originX = originX;
 		this.originY = originY;
-
+		this.init();
+	}
+	init(){
 		for(var i = 0;i<this.pointArr.length;i++){
 			this.pointArr[i] = new Array(LINES);
 		}
 		for(var i=0;i<this.chessArr.length;i++){
 			this.chessArr[i] = new Array(LINES);
     		for(var j=0;j<this.chessArr[i].length;j++){
-        		var chess = new Chess(20+interval*i,20+interval*j, chessRadius, undefined);
+        		var chess = new Chess(20+this.interval*i,20+this.interval*j, this.chessRadius, undefined);
         		this.chessArr[i][j] = chess;
 			}
 		}
 	}
-	addChess(chessObj){
+	addChess(x,y,color){
 		//TODO: Check for the new chess x and y
-		var x = chessObj.x;
-		var y = chessObj.y;
-		var chess = chessObj.chess;
 		if(!this.pointArr[x][y]){
 			this.pointArr[x][y] = true;
-			this.chessArr[x][y].color = chess.color;
+			this.chessArr[x][y].color = color;
 		}
 		this.renderNewChessboard();
 	}
 	update(mouse){
+		//TODO: this method has some performace issues
 		for(var i =0;i<this.chessArr.length;i++){
 			for(var j = 0; j<this.chessArr[i].length;j++){
 				if(mouse.y - this.chessArr[i][j].y < this.interval/2 && mouse.y - this.chessArr[i][j].y > -this.interval/2
@@ -78,10 +78,21 @@ class Chessboard{
 		}
 		this.canvas.stroke();
 	}
-	renderNewChessboard(){
+	renderNewChessboard(chessRecord){
 		this.canvas.clearRect(0,0,this.width,this.height);
 		this.drawChessBoard();
         this.drawStar();
+		if(chessRecord){
+			this.init();
+			for(var i = 0; i<chessRecord.colorArr.length; i++){
+				for(var j = 0; j<chessRecord.colorArr[i].length; j++){
+					if(chessRecord.colorArr[i][j]){
+						this.pointArr[i][j] = true;
+						this.chessArr[i][j].color = chessRecord.colorArr[i][j];
+					}
+				}
+			}
+		}
 		this.drawAllChess();
 	}
 	
