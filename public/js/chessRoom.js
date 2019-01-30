@@ -41,8 +41,6 @@ function createChessBoard(color){
 		var chessObj = chessBoard.click(event);
 		if(chessObj){
 			socket.emit('click',chessObj,color,function(err,chessRecord){
-//						console.log(chessRecord);
-
 				if(!err){
 					chessBoard.renderNewChessboard(chessRecord);
 					clickSound();
@@ -75,10 +73,36 @@ socket.on('connect', function(){
 });
 socket.on('gameBegin',function(color){
 	createChessBoard(color);
+	$('.message').remove();
+//	$('#bg').remove();
+	$('.chessBoard').show();
 });
 
 socket.on('waitingPlayer',function(){
-	$('.message').append('Waiting for players');
+	$('.message').append('<h2 id = "waitingMeg">Waiting for players</h2>').hide().show('slow');
+	$('#bg').append('<img id = "bg" src="assets/img/bg.jpg">');
+	$('.chessBoard').hide();
+	(function startAnimating() {
+		let rate = 250;
+		let lastBlinkTime = 0;
+		
+		function animate(){
+			let time = performance.now();
+			let elapsed = time - lastBlinkTime;
+			if(elapsed > rate){
+				lastBlinkTime = time;
+				if($('.meg-dot').length<3){
+					$('#waitingMeg').append('<span class="meg-dot">.</span>');
+				}else{
+					$('.meg-dot').remove();
+				}
+			}
+			requestAnimationFrame(animate);
+		}
+		animate();
+	})();
+
+	
 });
 
 socket.on('disconnect',function(){

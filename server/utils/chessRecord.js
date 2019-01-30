@@ -1,6 +1,5 @@
 const LINES = 19;
 const Color = {"black":'#000000',"white":'#ffffff'};
-const From = {'x+1': 0, 'x-1':1, 'y-1':2,'y+1':3};
 
 class ChessRecord{
 	constructor(id,room) {
@@ -22,29 +21,46 @@ class ChessRecord{
 			return 'It is another players round';
 		}
 		
-		
 		this.colorArr[x][y] = color; // assign color first so it is easier to count escape
-
-		
-		var escape = this.calculateEscape(x,y,color);   // capture case
-		
-		if(escape === 0) {
-			this.colorArr[x][y] = undefined;
-			return 'No escape, Cannot place chess here';
-			// bug here, sometimes can eat chess with 0 escape
-		}
-		
-
-		
-		var capturedChess = this.determineCapture(x,y,color);
+		var capturedChess = this.determineCapture(x,y,color); // capture case
 		capturedChess.forEach((chess)=>{
 			var x = chess.x;
 			var y = chess.y;
 			this.colorArr[x][y] = undefined; // mark the chess being eaten as undefined
 		});
-		
+		var escape = this.calculateEscape(x,y,color);   
+		var valid = this.determineValid(x,y,color);
+		console.log(valid);
+		console.log(!valid);
+		if(!valid) {
+			this.colorArr[x][y] = undefined;
+			return 'No escape, Cannot place chess here';
+			// "ko" or 'da Jie' in Chinese should be handled here
+		}
 		this.nextRound = this.nextRound === Color.black ? Color.white : Color.black;
 		
+	}
+	determineValid(x,y,color){
+		color = color === Color.black ? Color.white : Color.black;
+		var valid = this.calculateEscape(x,y,color); // 0 escape is false
+		return valid;
+		// if a chess is surrounede
+//		if(x-1>=0&&this.colorArr[x-1][y]!==color){
+//			valid = true;
+//		}
+//		if(x+1<LINES&&this.colorArr[x+1][y]!==color){
+//			valid = true;
+//		}
+//		if(y-1>=0&&this.colorArr[x][y-1]!==color){
+//			valid = true;
+//		}
+//		if(y+1<LINES&&this.colorArr[x][y+1]!==color){
+//			valid = true;
+//		}
+//		return valid;
+	}
+	validHelper(x,y,color){
+		var 
 	}
 	determineCapture(x,y,color){
 		color = color === Color.black ? Color.white : Color.black;
@@ -100,18 +116,19 @@ class ChessRecord{
 				y:y
 			});
 			// same chess, recursive chess
-			if(x-1>=0 && from!==From["x+1"]){
-				escape = this.calculateHelper(x-1,y,color,escape,From["x-1"]);
+			if(x-1>=0 && !this.joinedChess.some((chess)=>chess.x===x-1&&chess.y===y)){
+				escape = this.calculateHelper(x-1,y,color,escape);
 			}
-			if(x+1<LINES && from!==From["x-1"]){
-				escape = this.calculateHelper(x+1,y,color,escape,From["x+1"]);   
+			if(x+1<LINES && !this.joinedChess.some((chess)=>chess.x===x+1&&chess.y===y)){
+				escape = this.calculateHelper(x+1,y,color,escape);   
 			}
-			if(y-1>=0 && from!==From["y+1"]){
-				escape = this.calculateHelper(x,y-1,color,escape,From["y-1"]);   
+			if(y-1>=0 && !this.joinedChess.some((chess)=>chess.x===x&&chess.y===y-1)){
+				escape = this.calculateHelper(x,y-1,color,escape);   
 			}
-			if(y+1<LINES && from!==From["y-1"]){
-				escape = this.calculateHelper(x,y+1,color,escape,From["y+1"]);
+			if(y+1<LINES && !this.joinedChess.some((chess)=>chess.x===x&&chess.y===y+1)){
+				escape = this.calculateHelper(x,y+1,color,escape);
 			}
+
 		}
 		
 		return escape;
