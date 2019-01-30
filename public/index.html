@@ -4,45 +4,91 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Go chess app</title>	
+		
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/css/mdb.min.css" rel="stylesheet">
+		
 		<link rel="stylesheet" href="css/style.css">
+
 	</head>
 	<body class="centered-form">
-		<div class="centered-form__form">
-			<img src="assets/img/cover.png" class="cover-img" >
-			<form method = "post">
-				<div class="form-field">
-					<h3>Join a Room for playing GO chess</h3>
-				</div>
-				<div class="form-field">
-					<label>Display name</label>
-					<input id="name-field" type="text" autofocus/>
-				</div>
-<!--
-				<div class="form-field">
-					<label>Join Room</label>
-					<div id="room-list" name="roomJoined">
-						<input type="checkbox" name="placeholder">
-					</div>
-				</div>
--->
-				<div class="form-field">
-					<label>Create Room</label>
-					<input id="room-field" type="text" placeholder="Enter new room name" name="roomCreated" />
-				</div>
-				<input id="player-field" style="display: inline-flex" type="checkbox" checked="checked" /> 
-				<div class="form-field" style="display: inline-flex">
-					<label>Join as player?</label>
 
-					<button id="join-btn">Join</button>
-					
+		<div class="container">
+			<div class="centered-form__form">
+				
+				
+				<div class="view overlay zoom">
+						<a class = "h4 black-text"href="https://github.com/dyyfk/chessBoardServer" target="_blank">
+							<img src="assets/img/logo.png" class="cover-img img-thumbnail rounded mx-auto d-block" >
+						<div class="mask flex-center waves-effect waves-light"></div>
+						</a>
 				</div>
-			</form>
+
+				    <div class="d-flex justify-content-around">
+
+				<form  method = "post" class="border border-light p-5 text-center">
+						<p class="h4 mb-4">Join a Room for playing GO chess</p>
+<!--					<div class="form-field" >-->
+<!--						<label for="name-field">Display name</label>-->
+						<input id="name-field form-control mb-4" type="text" placeholder="Name" autofocus>
+<!--					</div>-->
+	<!--
+					<div class="form-field">
+						<label>Join Room</label>
+						<div id="room-list" name="roomJoined">
+							<input type="checkbox" name="placeholder">
+						</div>
+					</div>
+	-->
+					
+<!--					<div class="form-field">-->
+<!--						<label for="room-field">Create Room</label>-->
+						<input id="room-field form-control mb-4" type="text" placeholder="Room">
+<!--					</div>-->
+					
+					
+<!--					<div class="form-field">-->
+						<div class="custom-control custom-checkbox">
+
+							<input id="player-field" class="custom-control-input" type="checkbox" checked="checked" /> 
+
+							<label class="custom-control-label" for="player-field">Join as player?</label>
+<!--            			</div>-->
+					</div>
+					<button class ="btn btn-info btn-block my-4" id="join-btn" class="custom-control-input">Join</button>
+
+				</form>
+			
+				
+				
+			</div>
 		</div>
+		
 		<div class="chessBoard-box">
 		
 		</div>
-		<script src ="js/libs/jquery-3.3.1.min.js"></script>
+		<!--  CDN bootstrap	-->
+		
+		</div>
+		
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/js/mdb.min.js"></script>
+
+
+		
+		<!--  end of CDN bootstrap -->
+<!--		<script src ="js/libs/jquery-3.3.1.min.js"></script>-->
 		<script src ="js/libs/deparam.js"></script>
 		<script src ="socket.io/socket.io.js"></script>
 		<script src ="js/index.js"></script>
