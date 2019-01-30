@@ -59,9 +59,9 @@ class ChessRecord{
 //		}
 //		return valid;
 	}
-	validHelper(x,y,color){
-		var 
-	}
+//	validHelper(x,y,color){
+//		var 
+//	}
 	determineCapture(x,y,color){
 		color = color === Color.black ? Color.white : Color.black;
 		var joinedChess = [];
