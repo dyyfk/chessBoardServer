@@ -21,16 +21,12 @@ class ChessRecord{
 		else if(this.nextRound!==color){
 			return 'It is another players round';
 		}
-		
 		this.colorArr[x][y] = color; // assign color first so it is easier to count escape
 		var capturedChess = this.determineCapture(x,y,color); // capture case
-//		console.log(capturedChess);
-//		console.log(this.daJie);
 		if(capturedChess.length===1){
-			console.log(capturedChess);
-		   	var x = capturedChess[0].x;
-			var y = capturedChess[0].y;
-			if(this.daJie&&this.daJie.x===x&&this.daJie.y ===y){
+		   	var capturedX = capturedChess[0].x;
+			var capturedY = capturedChess[0].y;
+			if(this.daJie&&this.daJie.x===capturedX&&this.daJie.y ===capturedY){
 				this.colorArr[x][y] = null;
 				return 'ko(da jie), cannot place a chess in this position';
 			}
@@ -44,7 +40,7 @@ class ChessRecord{
 		if(capturedChess.length===1&&escape===1&&this.joinedChess.length===1){ // da jie situation
 			this.daJie =  this.joinedChess[0];
 		}else{
-			this.daJie = null; 
+			this.daJie = null;
 		}
 		var valid = this.determineValid(x,y,color);
 		if(!valid) {
