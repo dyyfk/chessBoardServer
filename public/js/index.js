@@ -1,5 +1,10 @@
 var socket = io();
 $(function(){
+	
+	$('.ripple').ripples({
+		dropRadius: 10,
+		perturbance: 0.01,
+	});
 	$('#join-btn').on('click',function(e){
 
 		e.preventDefault();
