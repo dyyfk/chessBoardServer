@@ -79,7 +79,7 @@ io.on('connection', (socket)=>{
 			chessRecord = chessRecords.getRoomRecord(room);
 			socket.to(room).emit('updateChess',chessRecord); //TODO: update the chess to the other user
 		}
-
+		
 		callback(undefined,chessRecord);
 	});
 	socket.on('disconnect',()=>{

@@ -11,6 +11,7 @@ class ChessRecord{
 			this.colorArr[i] = new Array(LINES);
 		}
 		this.joinedChess = []; // this is a temp variable that should only be used when calculating the joined chess
+		this.daJie = null;
 	}
 	addChess(x,y,color){
 		//TODO: Check for the new chess x and y
@@ -23,48 +24,44 @@ class ChessRecord{
 		
 		this.colorArr[x][y] = color; // assign color first so it is easier to count escape
 		var capturedChess = this.determineCapture(x,y,color); // capture case
+//		console.log(capturedChess);
+//		console.log(this.daJie);
+		if(capturedChess.length===1){
+			console.log(capturedChess);
+		   	var x = capturedChess[0].x;
+			var y = capturedChess[0].y;
+			if(this.daJie&&this.daJie.x===x&&this.daJie.y ===y){
+				this.colorArr[x][y] = null;
+				return 'ko(da jie), cannot place a chess in this position';
+			}
+	   	}
 		capturedChess.forEach((chess)=>{
 			var x = chess.x;
 			var y = chess.y;
-			this.colorArr[x][y] = undefined; // mark the chess being eaten as undefined
+			this.colorArr[x][y] = null; // mark the captured chess as undefined
 		});
-		var escape = this.calculateEscape(x,y,color);   
+		var escape = this.calculateEscape(x,y,color);
+		if(capturedChess.length===1&&escape===1&&this.joinedChess.length===1){ // da jie situation
+			this.daJie =  this.joinedChess[0];
+		}else{
+			this.daJie = null; 
+		}
 		var valid = this.determineValid(x,y,color);
-		console.log(valid);
 		if(!valid) {
-			this.colorArr[x][y] = undefined;
+			this.colorArr[x][y] = null;
 			return 'No escape, Cannot place chess here';
 			// "ko" or 'da Jie' in Chinese should be handled here
 		}
-		console.log('working');
 		this.nextRound = this.nextRound === Color.black ? Color.white : Color.black;
 		
 	}
 	determineValid(x,y,color){
-		this.colorArr[x][y] = color;
 //		color = color === Color.black ? Color.white : Color.black;
 		this.joinedChess = [];
 		var escape = this.escapeHelper(x,y,color,0);
-		this.colorArr[x][y] = undefined;
-		console.log(escape);
 		return escape !== 0;
 		// if a chess is surrounede
 
-	}
-	validHelper(x,y,color){
-		//		if(x-1>=0&&this.colorArr[x-1][y]!==color){
-//			valid = true;
-//		}
-//		if(x+1<LINES&&this.colorArr[x+1][y]!==color){
-//			valid = true;
-//		}
-//		if(y-1>=0&&this.colorArr[x][y-1]!==color){
-//			valid = true;
-//		}
-//		if(y+1<LINES&&this.colorArr[x][y+1]!==color){
-//			valid = true;
-//		}
-//		return valid;
 	}
 	determineCapture(x,y,color){
 		color = color === Color.black ? Color.white : Color.black;
@@ -119,7 +116,7 @@ class ChessRecord{
 				x:x,
 				y:y
 			});
-			// same chess, recursive chess
+			// same chess, recursive case
 			if(x-1>=0 && !this.joinedChess.some((chess)=>chess.x===x-1&&chess.y===y)){
 				escape = this.escapeHelper(x-1,y,color,escape);
 			}
