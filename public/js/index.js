@@ -10,8 +10,7 @@ $(function(){
 		var name = $('#name-field');
 		var room = $('#room-field');
 		var player = $('#player-field');
-		$('.centered-form__form').remove();
-		$('body').removeClass('centered-form');// this should be fixed
+		$('.container').remove();
 		$('.chessBoard-box').load( '/chessRoom.html' ,function(){
 			socket.emit('join',	{
 				room: room.val(),

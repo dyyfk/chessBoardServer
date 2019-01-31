@@ -61,11 +61,12 @@ class Chessboard{
 		
 		this.canvas.fillStyle = '#000000';
         this.canvas.beginPath();
-        this.canvas.moveTo(this.originY,this.originY);
-        this.canvas.lineTo(this.originX,canvas.height - this.originY);
-        this.canvas.lineTo(this.canvas.width - 20, canvas.height - 20);
-//        this.canvas.lineTo(this.canvas.width - this.originX, this.originY);
-//        this.canvas.lineTo(this.originX,this.originY);
+		this.canvas.moveTo(20,20);
+        this.canvas.lineTo(20,canvas.height - 20);
+
+        this.canvas.lineTo(canvas.width - 20, canvas.height - 20);
+        this.canvas.lineTo(canvas.width - 20, 20);
+        this.canvas.lineTo(20,20);
     //draw the inner line
 		for(var i = 1; i<18; i++){
 			this.canvas.moveTo(20+this.interval*i,20);

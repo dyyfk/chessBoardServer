@@ -61,7 +61,7 @@ function createChessBoard(color){
 	});
 
 	socket.on('updateChess',function(chessRecord){
-//		console.log(chessRecord);
+		console.log(chessRecord);
 		chessBoard.renderNewChessboard(chessRecord);
 		clickSound();
 	});
@@ -73,8 +73,8 @@ socket.on('connect', function(){
 });
 socket.on('gameBegin',function(color){
 	createChessBoard(color);
+	
 	$('.message').remove();
-//	$('#bg').remove();
 	$('.chessBoard').show();
 });
 

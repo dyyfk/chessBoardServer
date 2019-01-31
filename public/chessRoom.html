@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
 	<!-- CSS CDN-->
-	<link href="css/bootstrap-material-design.css" rel="stylesheet">
 
-	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<!--
 	<link rel="stylesheet" 
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+-->
 	<!--end of CSS CDN-->
 	<link type="text/css" rel="stylesheet" href="css/chessRoom.css">
 	
@@ -23,47 +23,49 @@
 	</div>
 -->
 <!--	<div id="bg" /> -->
-	
-	<div class="board-wrapper">
-		<canvas class="chessBoard" />
-		<div class="button-container">
-			<button class="request1" type ="button">jugdment</button>
-			<button class="request2" type ="button">resign</button>
-			<button class="request3" type ="button">call a draw</button>
-		</div>
-	</div>
-	
-	
-	
-	<div class="top-right">
-		
-		<div class="img-container">
-			<div class="img-wrapper">
-				<img id="left-avatar" draggable="false" seletable="false" src="assets/img/black.png" class = "player1" alt="black">
+	<div class="container-fluid chess-room">
+		<div class="row">
+			
+			<div class="col board-wrapper">
+				<canvas class="chessBoard" />
+
+
 			</div>
 
-			<div class="img-wrapper">
-				<img id="right-avatar" draggable="false" seletable="false" src="assets/img/white.png" class = "player2" alt ="white">
+			<div class="col top-right ">
+				<div class="button-container">
+					<button class="request1" type ="button">jugdment</button>
+					<button class="request2" type ="button">resign</button>
+					<button class="request3" type ="button">call a draw</button>
+				</div>
+				<div class="img-container">
+					<div class="img-wrapper">
+						<img id="left-avatar" draggable="false" seletable="false" src="assets/img/black.png" class = "player1" alt="black">
+					</div>
+
+					<div class="img-wrapper">
+						<img id="right-avatar" draggable="false" seletable="false" src="assets/img/white.png" class = "player2" alt ="white">
+					</div>
+				</div>
+
+
+				<div class="textarea">
+				</div>
+
+				<div class="input-send">
+					<input id="mInput" />
+					<button>Send</button>
+				</div>
+
+			<!--
+				<div class = "dialogBox">
+				</div>
+			-->
+				<div class = "message" /> 	
+				
 			</div>
 		</div>
-
-
-		<div class="textarea">
-		</div>
-
-		<div class="input-send">
-			<input id="mInput" />
-			<button>Send</button>
-		</div>
-
-	<!--
-		<div class = "dialogBox">
-		</div>
-	-->
-		<div class = "message" /> 	
 	</div>
-	
-	
 <!--	<input class="chatBox" type="text" placeholder="Chat to your opponent">	-->
 	<script src ="js/libs/jquery-3.3.1.min.js"></script>
 	<script src ="js/libs/moment.js"></script>
