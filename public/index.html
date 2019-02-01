@@ -1,137 +1,90 @@
 <!DOCTYPE>
-
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Go chess app</title>	
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/css/mdb.min.css" rel="stylesheet">
-		
-		<link rel="stylesheet" href="css/style.css">
+   <head>
+      <meta charset="utf-8">
+      <title>Go chess app</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+      <!-- Bootstrap core CSS -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Material Design Bootstrap -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/css/mdb.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/style.css">
+   </head>
+   <body>
+      <div class="ripple" />
+      <div class="container index-container">
+            <div class="row">
+               <div class="col"></div> 
+               <div class="col">
+                  <div class="view overlay zoom">
+                     <a class = "h4 black-text" href="#">
+                        <img src="assets/img/logo.png" class="img-thumbnail rounded mx-auto d-block" >
+                     </a>
+                  </div>
+				 <form  method = "post" class="mt-2 border border-light p-5 text-center">
+					<p class="h4 mb-4">Join a Room for playing GO chess</p>
 
-	</head>
-	<body class="centered-form ">
-		<div class="ripple" />
-		<div class="container">
-		<div class="centered-form__form">
-		<div class="row">
-			<div class="col"></div>
+					<input id="name-field" class="form-control mb-4" type="text" placeholder="Name" autofocus>
 
-			<div class="col">
-				
-				<div class="view overlay zoom">
-						<a class = "h4 black-text" href="#">
-							<img src="assets/img/logo.png" class="img-thumbnail rounded mx-auto d-block" >
-						<div class="mask flex-center waves-effect waves-light"></div>
-						</a>
-				</div>
-
-				    <div class="d-flex justify-content-around">
-
-				<form  method = "post" class="mt-2 border border-light p-5 text-center">
-						<p class="h4 mb-4">Join a Room for playing GO chess</p>
-<!--					<div class="form-field" >-->
-<!--						<label for="name-field">Display name</label>-->
-						<input id="name-field" class="form-control mb-4" type="text" placeholder="Name" autofocus>
-<!--					</div>-->
-	<!--
-					<div class="form-field">
+					<!--
+					   <div class="form-field">
 						<label>Join Room</label>
 						<div id="room-list" name="roomJoined">
 							<input type="checkbox" name="placeholder">
 						</div>
-					</div>
-	-->
-					
-<!--					<div class="form-field">-->
-<!--						<label for="room-field">Create Room</label>-->
-						<input id="room-field" class="form-control mb-4" type="text" placeholder="Room">
-<!--					</div>-->
-					
-					
-<!--					<div class="form-field">-->
-						<div class="custom-control custom-checkbox">
-
-							<input id="player-field" class="custom-control-input" type="checkbox" checked="checked" /> 
-
-							<label class="custom-control-label" for="player-field">Join as player?</label>
-<!--            			</div>-->
+					   </div>
+					   -->
+					<input id="room-field" class="form-control mb-4" type="text" placeholder="Room">
+					<div class="custom-control custom-checkbox">
+					   <input id="player-field" class="custom-control-input" type="checkbox" checked="checked" /> 
+					   <label class="custom-control-label" for="player-field">Join as player?</label>
 					</div>
 					<button class ="btn btn-info btn-block my-4" id="join-btn" class="custom-control-input">Join</button>
-
-				</form>
-			
-				
-				
-			</div>
-		</div>
-		  <div class="col-lg-4 col-md-6">
-
-    <!--Card Narrower-->
-    <div class="card card-cascade narrower">
-
-      <!--Card image-->
-      <div class="view view-cascade overlay">
-        <img src="assets/img/avatar.JPG"
-          alt="narrower">
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
+				 </form>
+               </div>
+               <div class="col-lg-4 col-md-6">
+                  <!--Card Narrower-->
+                  <div class="card card-cascade narrower">
+                     <!--Card image-->
+                     <div class="view view-cascade overlay">
+                        <img src="assets/img/avatar.JPG"
+                           alt="narrower">
+                        <a>
+                           <div class="mask rgba-white-slight"></div>
+                        </a>
+                     </div>
+                     <!--/.Card image-->
+                     <!--Card content-->
+                     <div class="card-body card-body-cascade">
+                        <h5 class="blue-text"><i class="fab fa-suse"></i>Portofolio</h5>
+                        <!--Title-->
+                        <h4 class="card-title">Project of Ruoyu He</h4>
+                        <!--Text-->
+                        <p class="card-text">Sophomore at University of Wisconsin - Madison</p>
+                        <a class="btn btn-unique" href="https://github.com/dyyfk" target="_blank"><i class="fab fa-github"></i>github</a>
+                        <a class="btn btn-primary" href="https://github.com/dyyfk/chessBoardServer" target="_blank"><i class="fab fa-linkedin"></i>linkedin</a>
+                     </div>
+                     <!--/.Card content-->
+                  </div>
+                  <!--/.Card Narrower-->
+               </div>
+         </div>
       </div>
-      <!--/.Card image-->
-
-      <!--Card content-->
-      <div class="card-body card-body-cascade">
-        <h5 class="blue-text"><i class="fab fa-suse"></i>Portofolio</h5>
-        <!--Title-->
-        <h4 class="card-title">Project of Ruoyu He</h4>
-        <!--Text-->
-        <p class="card-text">Sophomore at University of Wisconsin - Madison</p>
-		  <a class="btn btn-unique" href="https://github.com/dyyfk" target="_blank"><i class="fab fa-github"></i>github</a>
-		  <a class="btn btn-primary" href="https://github.com/dyyfk/chessBoardServer" target="_blank"><i class="fab fa-linkedin"></i>linkedin</a>
-		</div>
-      <!--/.Card content-->
-
-    </div>
-    <!--/.Card Narrower-->
-
-  </div>
-					</div>
-
-
-			<!-- Grid row -->
-
-<!-- Grid row -->
-		<!--  CDN bootstrap	-->
-		
-		</div>
-
-		</div>
-		<div class="chessBoard-box z-depth-5" />
-
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/js/mdb.min.js"></script>
-
-
-		
-		<!--  end of CDN bootstrap -->
-<!--		<script src ="js/libs/jquery-3.3.1.min.js"></script>-->
-		<script src="js/libs/jquery.ripples-min.js"></script>
-		<script src ="js/libs/deparam.js"></script>
-		<script src ="socket.io/socket.io.js"></script>
-		<script src ="js/index.js"></script>
-	</body>
-	
+      <div class="chessBoard-box z-depth-5" />
+      <!-- JQuery -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- Bootstrap tooltips -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+      <!-- MDB core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/js/mdb.min.js"></script>
+      <!--  end of CDN bootstrap -->
+      <script src="js/libs/jquery.ripples-min.js"></script>
+      <script src ="js/libs/deparam.js"></script>
+      <script src ="socket.io/socket.io.js"></script>
+      <script src ="js/index.js"></script>
+   </body>
 </html>

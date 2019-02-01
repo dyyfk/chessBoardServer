@@ -121,15 +121,22 @@ class Chessboard{
 		}
 
 	}
+	hoverChess(){
+		
+	}
 	drawChess(chess){
 		var style = this.canvas.fillStyle;
+		var shadowColor = this.canvas.shadowColor;
 		this.canvas.fillStyle = chess.color;
-		
+//		this.canvas.shadowBlur = 10;
+//		this.canvas.shadowColor = 'blue';
 		this.canvas.beginPath();
 		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
 		this.canvas.stroke();
 		this.canvas.fill();
 		this.canvas.fillStyle = style;
+//		this.canvas.shadowColor = shadowColor;
+//		this.canvas.shadowBlur = 0;
 	}
 	click(mouse){
 		var chessObj = this.update(mouse);

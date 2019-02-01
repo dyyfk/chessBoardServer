@@ -3,15 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-	<!-- CSS CDN-->
-
-<!--
-	<link rel="stylesheet" 
-	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
--->
-	<!--end of CSS CDN-->
 	<link type="text/css" rel="stylesheet" href="css/chessRoom.css">
-	
 	<audio id="clickSound" src="assets/sounds/firststone.mp3"> </audio>
 </head>
 <body>
@@ -23,16 +15,18 @@
 	</div>
 -->
 <!--	<div id="bg" /> -->
+		<div class = "message" /> 	
+
 	<div class="container-fluid chess-room">
-		<div class="row">
+		<div class="row wrapper">
 			
-			<div class="col board-wrapper">
+			<div class="board-wrapper">
 				<canvas class="chessBoard" />
 
 
 			</div>
 
-			<div class="col top-right ">
+			<div class="top-right ">
 				<div class="button-container">
 					<button class="request1" type ="button">jugdment</button>
 					<button class="request2" type ="button">resign</button>
@@ -61,19 +55,18 @@
 				<div class = "dialogBox">
 				</div>
 			-->
-				<div class = "message" /> 	
 				
 			</div>
 		</div>
 	</div>
+
 <!--	<input class="chatBox" type="text" placeholder="Chat to your opponent">	-->
-	<script src ="js/libs/jquery-3.3.1.min.js"></script>
 	<script src ="js/libs/moment.js"></script>
 	<script src ="js/libs/deparam.js"></script>
 	<script src ="js/libs/mustache.js"></script>
 	<script src="js/utils/chess.js"></script>
 	<script src="js/utils/chessboard.js"></script>
-	<script src="socket.io/socket.io.js"></script>
+<!--	<script src="socket.io/socket.io.js"></script>-->
     <script src="js/chessRoom.js"></script>
 </body>
 </html>

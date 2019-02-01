@@ -75,33 +75,16 @@ socket.on('gameBegin',function(color){
 	createChessBoard(color);
 	
 	$('.message').remove();
-	$('.chessBoard').show();
+	$('.chess-room').show();
 });
 
 socket.on('waitingPlayer',function(){
-	$('.message').append('<h2 id = "waitingMeg">Waiting for players</h2>').hide().show('slow');
-	$('#bg').append('<img id = "bg" src="assets/img/bg.jpg">');
-	$('.chessBoard').hide();
-	(function startAnimating() {
-		let rate = 250;
-		let lastBlinkTime = 0;
-		
-		function animate(){
-			let time = performance.now();
-			let elapsed = time - lastBlinkTime;
-			if(elapsed > rate){
-				lastBlinkTime = time;
-				if($('.meg-dot').length<3){
-					$('#waitingMeg').append('<span class="meg-dot">.</span>');
-				}else{
-					$('.meg-dot').remove();
-				}
-			}
-			requestAnimationFrame(animate);
-		}
-		animate();
-	})();
-
+	$('.wrapper').hide();
+	$('.index-container').remove();
+	
+//	$('.centered-form').css('background','linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7)),url(../assets/img/bg-chess-room.jpg)center/cover fixed no-repeat;');
+	$('body').append('<h2 id = "waitingMeg">Waiting for players</h2>');
+	$('#waitingMeg').append('<div class="fa fa-spinner fa-spin"></div>');
 	
 });
 

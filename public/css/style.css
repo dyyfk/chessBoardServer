@@ -2,33 +2,29 @@
 
 body {
   /* The image used */  /* Center and scale the image nicely */
-	background: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5))
+	background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7))
     ,url(../assets/img/bg-index.jpg)center/cover fixed no-repeat;
-  /* Full height */
-  height: 100%;
-	
-
 }
 
 .container {
-    height: 100%;
+/*    height: 100%;*/
+/*
     display: flex;
     justify-content: center;
     align-items: center;
+*/
 }
 
 .ripple{
 	width: 100%;
     height: 100%;
-/*    background:rgba(255,255,255,0.5); */
-/*    position: fixed;*/
     top: 0;
     left: 0;
     z-index: 100; /* Just to keep it at the very top */
 }
 
 form {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-	background-color: white;
+  	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	background-image: linear-gradient(rgba(255,255,255,0.9),rgba(255,255,255,0.7));
 }
 
