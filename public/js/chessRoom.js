@@ -74,8 +74,12 @@ socket.on('connect', function(){
 socket.on('gameBegin',function(color){
 	createChessBoard(color);
 	
+	$('#waitingMeg').remove();
+	$('.message').append('<h2 id = "waitingMeg">Players joined the room, game begin</h2>');
+	$('.message').show('slow');
 	$('.message').remove();
-	$('.chess-room').show();
+	
+	$('.chess-room').hide().show('slow');
 });
 
 socket.on('waitingPlayer',function(){
