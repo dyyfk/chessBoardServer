@@ -19,9 +19,6 @@ var c = canvas.getContext('2d');
 const CHESS_RADIUS = 15; 
 const INTERVAL = (canvas.width - 2 * 20) / 18;
 
-
-
-
 var chessBoard;
 
 function clickSound(){
@@ -73,20 +70,19 @@ socket.on('connect', function(){
 });
 socket.on('gameBegin',function(color){
 	createChessBoard(color);
-	
+	$('.chess-room').hide();
 	$('#waitingMeg').remove();
 	$('.message').append('<h2 id = "waitingMeg">Players joined the room, game begin</h2>');
-	$('.message').show('slow');
-	$('.message').remove();
-	
-	$('.chess-room').hide().show('slow');
+	$('.message').hide().show('1600');
+	setTimeout(function(){
+		$('.message').remove();
+		$('.chess-room').hide().show('slow');
+	},3000)
 });
 
 socket.on('waitingPlayer',function(){
 	$('.chess-room').hide();
 	$('.index-container').remove();
-	
-//	$('.centered-form').css('background','linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7)),url(../assets/img/bg-chess-room.jpg)center/cover fixed no-repeat;');
 	$('.message').append('<h2 id = "waitingMeg">Waiting for players</h2>');
 	$('#waitingMeg').append('<div class="fa fa-spinner fa-spin"></div>');
 	
