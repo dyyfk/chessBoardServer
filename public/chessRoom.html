@@ -22,36 +22,27 @@
 		<div class="chess-room">
 		<div class="row">
 			
-			<div class="board-wrapper">
-				<canvas class="chessBoard" />
-			</div>
+			<canvas class="chessBoard" />
 
-			<div class="top-right ">
+			<div class="tools ">
 				<div class="button-container">
-					<button class="request1" type ="button">jugdment</button>
-					<button class="request2" type ="button">resign</button>
-					<button class="request3" type ="button">call a draw</button>
+					<button class="btn btn-dark">jugdment</button>
+					<button class="btn btn-dark">resign</button>
+					<button class="btn btn-dark">call a draw</button>
 				</div>
 				<div class="img-container">
-					<div class="img-wrapper">
-						<img id="left-avatar" draggable="false" seletable="false" src="assets/img/black.png" class = "player1" alt="black">
-					</div>
-
-					<div class="img-wrapper">
-						<img id="right-avatar" draggable="false" seletable="false" src="assets/img/white.png" class = "player2" alt ="white">
-					</div>
+						<img class="img-thumbnail" id="black-avatar" src="assets/img/black.png" alt="black">
+						<img class="img-thumbnail" id="white-avatar" src="assets/img/white.png" alt ="white">
 				</div>
 
 
 				<div class="textarea">
 				</div>
+				<div class="d-flex">
+					<input class ="form-control form-control-sm" id="Input" />
+					<button class="btn btn-primary btn-sm active">Send</button>
 
-				<div class="input-send">
-					<input id="mInput" />
-					<button>Send</button>
 				</div>
-
-			
 				<div class = "dialogBox">
 				</div>
 			

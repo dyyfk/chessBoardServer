@@ -72,11 +72,11 @@ socket.on('gameBegin',function(color){
 	createChessBoard(color);
 	$('.chess-room').hide();
 	$('#waitingMeg').remove();
-	$('.message').append('<h2 id = "waitingMeg">Players joined the room, game begin</h2>');
+	$('.message').append('<h2 id = "waitingMeg">Players ready, game begin</h2>');
 	$('.message').hide().show('1600');
 	setTimeout(function(){
 		$('.message').remove();
-		$('.chess-room').hide().show('slow');
+		$('.chess-room').show('slow');
 	},3000)
 });
 
@@ -85,7 +85,6 @@ socket.on('waitingPlayer',function(){
 	$('.index-container').remove();
 	$('.message').append('<h2 id = "waitingMeg">Waiting for players</h2>');
 	$('#waitingMeg').append('<div class="fa fa-spinner fa-spin"></div>');
-	
 });
 
 socket.on('disconnect',function(){

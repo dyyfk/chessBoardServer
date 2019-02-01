@@ -1,5 +1,5 @@
 .chessBoard{
-	
+	position: relative;
 	border: 1px solid black;
 	background: linear-gradient(to right bottom, #ffefba, #fff3c8);
 
