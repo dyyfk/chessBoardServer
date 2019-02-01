@@ -79,11 +79,11 @@ socket.on('gameBegin',function(color){
 });
 
 socket.on('waitingPlayer',function(){
-	$('.wrapper').hide();
+	$('.chess-room').hide();
 	$('.index-container').remove();
 	
 //	$('.centered-form').css('background','linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7)),url(../assets/img/bg-chess-room.jpg)center/cover fixed no-repeat;');
-	$('body').append('<h2 id = "waitingMeg">Waiting for players</h2>');
+	$('.message').append('<h2 id = "waitingMeg">Waiting for players</h2>');
 	$('#waitingMeg').append('<div class="fa fa-spinner fa-spin"></div>');
 	
 });
