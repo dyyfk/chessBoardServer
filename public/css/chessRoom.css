@@ -1,13 +1,14 @@
 .chessBoard{
 	position: relative;
-	border: 1px solid black;
 	background: linear-gradient(to right bottom, #ffefba, #fff3c8);
-
+	border-radius: 20px;
+	
 /*	position: absolute;*/
 
 	
 /*	min-height: 500px;*/
 }
+
 
 body {
   /* The image used */  /* Center and scale the image nicely */

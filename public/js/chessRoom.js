@@ -1,17 +1,23 @@
 
 var socket = io();
-
+$(function () {
+	$("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+});
 //------- begin of the chessBoard -------
 var canvas = document.querySelector('.chessBoard');
-canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
+var length = window.innerHeight<window.innerWidth ? window.innerWidth : window.innerHeight;
+var width = canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
+
+console.log(length);
+console.log(width);
+var originX = (length - width)/2;
 
 
-			var rect = document.querySelector('.chessBoard-box').getBoundingClientRect();
-console.log(rect.top, rect.right, rect.bottom, rect.left);
 
-			rect = canvas.getBoundingClientRect();
-console.log(rect.top, rect.right, rect.bottom, rect.left);
 
+//
+//			rect = canvas.getBoundingClientRect();
+//console.log(rect.top, rect.right, rect.bottom, rect.left);
 
 var c = canvas.getContext('2d');
 
@@ -28,7 +34,8 @@ function clickSound(){
 
 
 function createChessBoard(color){
-	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color);
+	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color,originX,0);
+	//there should be no margin in y axis
 	chessBoard.renderNewChessboard();
 	canvas.addEventListener('mousemove',function(event){
 		chessBoard.hover(event); //TODO: add a color the hovering chess
@@ -58,7 +65,6 @@ function createChessBoard(color){
 	});
 
 	socket.on('updateChess',function(chessRecord){
-		console.log(chessRecord);
 		chessBoard.renderNewChessboard(chessRecord);
 		clickSound();
 	});
@@ -83,7 +89,7 @@ socket.on('gameBegin',function(color){
 socket.on('waitingPlayer',function(){
 	$('.chess-room').hide();
 	$('.index-container').remove();
-	$('.message').append('<h2 id = "waitingMeg">Waiting for players</h2>');
+	$('.message').append('<h2 id = "waitingMeg">Waiting for players... </h2>');
 	$('#waitingMeg').append('<div class="fa fa-spinner fa-spin"></div>');
 });
 

@@ -10,8 +10,8 @@ $(function(){
 		var name = $('#name-field');
 		var room = $('#room-field');
 		var player = $('#player-field');
-		$('.container').remove();
-		$('.chessBoard-box').load( '/chessRoom.html' ,function(){
+		$('.index-container').remove();
+		$('body').load( '/chessRoom.html' ,function(){
 			socket.emit('join',	{
 				room: room.val(),
 				name: name.val(),

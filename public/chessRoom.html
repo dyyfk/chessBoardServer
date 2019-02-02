@@ -15,41 +15,43 @@
 	</div>
 -->
 <!--	<div id="bg" /> -->
-	
-
 	<div class="container-fluid">
 		<div class ="message" /> 	
-		<div class="chess-room">
-		<div class="row">
-			
-			<canvas class="chessBoard" />
+			<div class="row no-gutters justify-content-center">
 
-			<div class="tools ">
-				<div class="button-container">
-					<button class="btn btn-dark">jugdment</button>
-					<button class="btn btn-dark">resign</button>
-					<button class="btn btn-dark">call a draw</button>
-				</div>
-				<div class="img-container">
-						<img class="img-thumbnail" id="black-avatar" src="assets/img/black.png" alt="black">
-						<img class="img-thumbnail" id="white-avatar" src="assets/img/white.png" alt ="white">
-				</div>
-
-
-				<div class="textarea">
-				</div>
-				<div class="d-flex">
-					<input class ="form-control form-control-sm" id="Input" />
-					<button class="btn btn-primary btn-sm active align-middle">Send</button>
-
-				</div>
-				<div class = "dialogBox">
-				</div>
-			
 				
-			</div>
+				<div class="chess-room">
+				<div class="col-1 tool-left">
+					<div class="button-container">
+						<button class="btn btn-dark">judgement</button>
+						<button class="btn btn-dark">resign</button>
+						<button class="btn btn-dark">call a draw</button>
+					</div>
+					<div class="img-container">
+							<img class="img-thumbnail" id="black-avatar" src="assets/img/black.png" alt="black">
+							<img class="img-thumbnail" id="white-avatar" src="assets/img/white.png" alt ="white">
+					</div>
+				</div>
+				<canvas class="col-10 chessBoard hoverable" />
+
+	
+				<div class="col-1 tool-right ">
+					<div class="textarea">
+					</div>
+					<div class="form-inline">
+						<input class ="form-control form-control-sm" id="Input" />
+					  <div class="py-4">
+						<a class="btn btn-sm btn-outline-black waves-effect"><strong>send</strong></a>
+						</div>
+
+					</div>
+				</div>
+	
+
+
+				</div>
+	<!--		</div>-->
 		</div>
-	</div>
 	</div>
 <!--	<input class="chatBox" type="text" placeholder="Chat to your opponent">	-->
 	<script src ="js/libs/moment.js"></script>
