@@ -8,11 +8,9 @@ var canvas = document.querySelector('.chessBoard');
 var length = window.innerHeight<window.innerWidth ? window.innerWidth : window.innerHeight;
 var width = canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
 
-console.log(length);
-console.log(width);
-var originX = (length - width)/2;
+var originX = document.querySelector('#left-o-board').getBoundingClientRect().right;
 
-
+console.log(originX);
 
 
 //
