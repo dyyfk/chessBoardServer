@@ -26,5 +26,18 @@ body {
 form {
   	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	background-image: linear-gradient(rgba(255,255,255,0.9),rgba(255,255,255,0.7));
+    
+}
+
+#logo{
+    width: 60%;
+}
+
+
+.row{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
 

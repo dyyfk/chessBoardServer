@@ -74,12 +74,12 @@ socket.on('gameBegin',function(color){
 	createChessBoard(color);
 	$('.chess-room').hide();
 	$('#waitingMeg').remove();
-	$('.message').append('<h2 id = "waitingMeg">Players ready, game begin</h2>');
-	$('.message').hide().show('1600');
+	$('.message').append('<h2 id = "beginMeg">Players ready, game begin</h2>');
+	$('.message').hide().show('slow');
 	setTimeout(function(){
-		$('.message').remove();
+		$('#beginMeg').remove();
 		$('.chess-room').show('slow');
-	},3000)
+	},1000)
 });
 
 socket.on('waitingPlayer',function(){
@@ -89,9 +89,14 @@ socket.on('waitingPlayer',function(){
 	$('#waitingMeg').append('<div class="fa fa-spinner fa-spin"></div>');
 });
 
+socket.on('gamePause',function(){
+    $('.message').append('<h2 class="text-danger" id = "pauseMeg">Game paused, opponent left</h2>');
+});
+
 socket.on('disconnect',function(){
 	console.log('Connection lost');
 });
+
 
 
 

@@ -84,10 +84,10 @@ io.on('connection', (socket)=>{
 	});
 	socket.on('disconnect',()=>{
 		console.log('User disconnected');
-		
 		var user = users.removeUser(socket.id);
 		if(user){
 		   	var room = user.room;
+            socket.to(room).emit('gamePause');
 			var userInRoom = users.getPlayerList(room);
 			if(!userInRoom||userInRoom.length===0){
 				chessRecords.removeRecord(socket.id);

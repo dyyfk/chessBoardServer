@@ -16,7 +16,7 @@
 -->
 <!--	<div id="bg" /> -->
 	
-	<div class="container chess-room">
+	<div class="container-fluid chess-room">
 		<div class="d-flex flex-row justify-content-center ">
 			<div id="left-of-board" class="d-flex flex-column img-container flex-grow-1">
 				<div id="avatars" class="d-flex flex-row align-items-center">
@@ -33,6 +33,23 @@
 			<canvas class="d-inline-block chessBoard" />
 
 			<div id="right-of-board" class="d-flex flex-column flex-grow-1">
+                <button onclick="APP.special_effect_canvas.clear();APP.special_effect_canvas.init('fireworks_canvas'); APP.special_effect_canvas.setupEffect(
+		'fireworks', 
+		undefined, 
+		{
+			count: 1,
+			subCount: 30,
+			repeatLimit: 7,
+			/*xTarget: rect.left + ((rect.right - rect.left)/2),
+			yTarget: rect.top + ((rect.bottom - rect.top)/2),*/
+			hueBase: 50,//47,
+			hueVariation: 5,//10,
+			brightnessBase: 65,
+			brightnessVariation: 15,
+			lineMin: 2,
+			lineMax: 5,
+		},
+		true);">Start Fireworks Effect</button>
 				<div id="ppl-container" class="flex-grow-1"></div>
 				<div id="chats-container" class="flex-grow-1"></div>
 				<div id="message-post" class="d-flex flex-row form-inline">				
@@ -99,6 +116,7 @@
 	<script src ="js/libs/mustache.js"></script>
 	<script src="js/utils/chess.js"></script>
 	<script src="js/utils/chessboard.js"></script>
+    <script src="js/libs/fireworks.js"></script>
 <!--	<script src="socket.io/socket.io.js"></script>-->
     <script src="js/chessRoom.js"></script>
 </body>
