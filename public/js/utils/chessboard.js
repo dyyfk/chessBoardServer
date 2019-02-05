@@ -106,16 +106,15 @@ class Chessboard{
 	
 	drawStar(){
 	    //draw the dot 
-	    this.canvas.fillRect(this.margin+this.interval*3-3,this.margin+this.interval*3-3,6,6); 
-	    this.canvas.fillRect(this.margin+this.interval*3-3,this.margin+this.interval*9-3,6,6);
-	    this.canvas.fillRect(this.margin+this.interval*3-3,this.margin+this.interval*15-3,6,6);
-	    this.canvas.fillRect(this.margin+this.interval*9-3,this.margin+this.interval*3-3,6,6);
-	    this.canvas.fillRect(this.margin+this.interval*9-3,this.margin+this.interval*9-3,6,6);
-	    this.canvas.fillRect(this.margin+this.interval*9-3,this.margin+this.interval*15-3,6,6);
-	    this.canvas.fillRect(this.margin+this.interval*15-3,this.margin+this.interval*3-3,6,6);
-	    this.canvas.fillRect(this.margin+this.interval*15-3,this.margin+this.interval*9-3,6,6);
-	    this.canvas.fillRect(this.margin+this.interval*15-3,this.margin+this.interval*15-3,6,6);
-		//TODO: fix this god damn hard code
+        var dotRadius = 5;
+        for(var i = 3; i<=15;i+=6){
+            for(var j = 3; j<=15;j+=6){
+                this.canvas.beginPath();
+                this.canvas.arc(this.margin+this.interval*i,this.margin+this.interval*j,dotRadius,Math.PI*2,false); 
+                this.canvas.fill();
+                this.canvas.closePath();
+            }
+        }
 	    
 	    this.canvas.stroke();
 	}

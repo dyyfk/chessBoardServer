@@ -95,7 +95,29 @@ socket.on('waitingPlayer',function(){
 });
 
 socket.on('gamePause',function(){
-    $('.message').append('<h2 class="text-danger" id = "pauseMeg">Game paused, opponent left</h2>');
+    $('.message').append('<h2 id = "pauseMeg">Game paused, opponent left. <i class="fas fa-pause"></i></h2>');
+});
+
+socket.on('gameWon', function(){
+    $('.message').append('<h2 id = "wonMeg">You won! <i class="fas fa-smile"></i></h2>');
+    
+    
+    //fireworks speical effects
+    (function(){
+        APP.special_effect_canvas.clear();
+        APP.special_effect_canvas.init('fireworks_canvas');
+        APP.special_effect_canvas.setupEffect('fireworks', undefined, {
+                count: 1,
+                subCount: 30,
+                repeatLimit: 7,
+                hueBase: 50,//47,
+                hueVariation: 5,//10,
+                brightnessBase: 65,
+                brightnessVariation: 15,
+                lineMin: 2,
+                lineMax: 5,
+        },true);
+    })();
 });
 
 
