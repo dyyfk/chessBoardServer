@@ -59,13 +59,13 @@ class Chessboard{
 		}
 	}
 
-	getChess(){
-		return this.chessArr;
-	}
 	drawChessBoard(){
     	//draw the outter line
 		
+		this.canvas.save();
 		this.canvas.fillStyle = '#000000';
+		this.canvas.lineWidth = 2;
+		
         this.canvas.beginPath();
 		this.canvas.moveTo(this.margin,this.margin);
         this.canvas.lineTo(this.margin,canvas.height - this.margin);
@@ -73,7 +73,8 @@ class Chessboard{
         this.canvas.lineTo(canvas.width - this.margin, canvas.height - this.margin);
         this.canvas.lineTo(canvas.width - this.margin, this.margin);
         this.canvas.lineTo(this.margin,this.margin);
-    //draw the inner line
+		
+    	//draw the inner line
 		for(var i = 1; i<18; i++){
 			this.canvas.moveTo(this.margin+this.interval*i,this.margin);
 			this.canvas.lineTo(this.margin+this.interval*i,canvas.height - this.margin);
@@ -83,6 +84,7 @@ class Chessboard{
 			this.canvas.lineTo(canvas.width-this.margin,this.margin+this.interval*i);
 		}
 		this.canvas.stroke();
+		this.canvas.restore();
 	}
 	renderNewChessboard(chessRecord){
 		this.canvas.clearRect(0,0,this.width,this.height);
@@ -128,28 +130,28 @@ class Chessboard{
 
 	}
 	drawChess(chess){
-		var style = this.canvas.fillStyle;
-		var shadowColor = this.canvas.shadowColor;
+		this.canvas.save();
+
 		this.canvas.fillStyle = chess.color;
 		this.canvas.beginPath();
 		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
 		this.canvas.stroke();
 		this.canvas.fill();
-		this.canvas.fillStyle = style;
+		
+		this.canvas.restore();
 	}
 	hoverChess(chess){
-		var style = this.canvas.fillStyle;
-		var shadowColor = this.canvas.shadowColor;
+		this.canvas.save();
+		
 		this.canvas.fillStyle = chess.color;
 		this.canvas.shadowBlur = 10;
-		this.canvas.shadowColor = '#88B7B5';
+		this.canvas.shadowColor = '#88B7B5'; // the shadow arround the hovering chess
 		this.canvas.beginPath();
 		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
 		this.canvas.stroke();
 		this.canvas.fill();
-		this.canvas.fillStyle = style;
-		this.canvas.shadowColor = shadowColor;
-		this.canvas.shadowBlur = 0;
+		
+		this.canvas.restore();
 	}
 	click(mouse){
 		var chessObj = this.update(mouse);

@@ -33,8 +33,13 @@ function createChessBoard(color){
 	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color,originX,0);
 	//there should be no margin in y axis
 	chessBoard.renderNewChessboard();
+	$('.chessBoard').css('cursor', 'none');
+	$('.chessBoard').mouseleave(function(){
+		chessBoard.renderNewChessboard(); // this prevents a chess being drawn when the cursor leaves the chessBoard
+	});
+	
 	canvas.addEventListener('mousemove',function(event){
-		chessBoard.hover(event); //TODO: add a color the hovering chess
+		chessBoard.hover(event); 
 	});
 
 	canvas.addEventListener('click', function(event){
@@ -92,6 +97,7 @@ socket.on('waitingPlayer',function(){
 socket.on('gamePause',function(){
     $('.message').append('<h2 class="text-danger" id = "pauseMeg">Game paused, opponent left</h2>');
 });
+
 
 socket.on('disconnect',function(){
 	console.log('Connection lost');
