@@ -30,15 +30,15 @@
 				</div>
 			</div>
 
-			<canvas class="d-inline-block chessBoard" />
+			<canvas class="d-inline-block chessBoard"/>
 
 			<div id="right-of-board" class="d-flex flex-column flex-grow-1">
 				<div id="ppl-container" class="flex-grow-1"></div>
 				<div id="chats-container" class="flex-grow-1"></div>
 				<div id="message-post" class="d-flex flex-row form-inline">				
-					<input class ="form-control form-control-sm flex-grow-1" id="Input" />
+					<input class ="form-control form-control-sm flex-grow-1" id="text-meg" />
 					<div class="py-4">
-						<a class="btn btn-sm btn-outline-black waves-effect"><strong>send</strong></a>
+						<a class="btn btn-sm btn-outline-black waves-effect" id="send-meg"><strong>send</strong></a>
 					</div>
 
 				</div>
@@ -90,7 +90,17 @@
 	</div>
 -->
 	
-	
+        <script id="message-template" type="text/template">
+			<li id = "chats-container">
+				<div class ="message__title">
+					<h4>{{from}}</h4>	
+					<span>{{createdAt}}</span>
+				</div>
+				<div class ="message__body">
+					 <p>{{text}} </p>
+				</div>
+			</li>
+		</script>>
 	
 	
 <!--	<input class="chatBox" type="text" placeholder="Chat to your opponent">	-->
@@ -100,7 +110,6 @@
 	<script src="js/utils/chess.js"></script>
 	<script src="js/utils/chessboard.js"></script>
     <script src="js/libs/fireworks.js"></script>
-<!--	<script src="socket.io/socket.io.js"></script>-->
     <script src="js/chessRoom.js"></script>
 </body>
 </html>

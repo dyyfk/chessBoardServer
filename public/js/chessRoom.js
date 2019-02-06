@@ -1,8 +1,5 @@
 
 var socket = io();
-$(function () {
-	$("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
-});
 //------- begin of the chessBoard -------
 var canvas = document.querySelector('.chessBoard');
 var length = window.innerHeight<window.innerWidth ? window.innerWidth : window.innerHeight;
@@ -28,6 +25,15 @@ function clickSound(){
 }
 //TODO: this should be a utility function
 
+
+$('#send-meg').click(function(){
+    var input =  $('#text-meg').val();
+    var message = {
+        text: input,
+        createAt: Date.now()
+    }
+    socket.emit('sendMeg',message);
+});
 
 function createChessBoard(color){
 	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color,originX,0);
@@ -94,8 +100,28 @@ socket.on('waitingPlayer',function(){
 	$('#waitingMeg').append('<div class="fa fa-spinner fa-spin"></div>');
 });
 
+
+socket.on('receiveMeg',function(message){
+//    $('#chats-container').append('<h2></h2>').text(`${name}: ${text}`);
+    var formattedTime = moment(message.createdAt).format('h:mm a');
+	var template = jQuery('#message-template').html();
+	var html = Mustache.render(template ,{
+		text: message.text,
+		from: message.from,
+		createdAt: formattedTime
+	});
+	
+	jQuery('#chats-container').append(html);
+});
+
+//TODO: this one has bug, fix the blurry chessBoard and add a settimeout function
+
 socket.on('gamePause',function(){
-    $('.message').append('<h2 id = "pauseMeg">Game paused, opponent left. <i class="fas fa-pause"></i></h2>');
+    $('.message').append('<h2 id="pauseMeg" class="font-weight-bold text-black-50">Game paused, opponent left. <i class="fas fa-pause"></i></h2>');
+    
+    
+//    var rect = document.querySelector('.chessBoard').getBoundingClientRect();
+//    stackBlurCanvasRGB('chessBoard', 0, 0,canvas.width,canvas.height, 10 );
 });
 
 socket.on('gameWon', function(){

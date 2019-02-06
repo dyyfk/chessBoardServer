@@ -82,6 +82,15 @@ io.on('connection', (socket)=>{
 		
 		callback(undefined,chessRecord);
 	});
+    
+    socket.on('sendMeg',(message)=>{
+        var id = socket.id;
+        var user = users.getUser(id);
+        var room = user.room;
+        var name = user.name;
+        message.from = name;
+        io.to(room).emit('receiveMeg',message);
+    });
 	socket.on('disconnect',()=>{
 		console.log('User disconnected');
 		var user = users.removeUser(socket.id);
@@ -96,6 +105,7 @@ io.on('connection', (socket)=>{
 
 		
 	});
+    
 });
 
 

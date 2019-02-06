@@ -26,7 +26,14 @@ body {
 	padding: 0;
 }
 */
-
+/*
+.right-of-board{
+    margin-left: 5px;
+}
+*/
+#chats-container{
+    border: 1px solid black;
+}
 .message{
 	position: fixed;
 	top: 50%;
