@@ -7,8 +7,8 @@
 var APP = {
   p_aActiveCanvases : [], // collected so they can be cleared
   p_iCurrentFPS: 60, // can be set by user settings, 60 is default for desktops
-  p_iStageWidth: 800,
-  p_iStageHeight: 600,
+  p_iStageWidth: window.innerWidth,
+  p_iStageHeight: window.innerHeight,
   MODE: {
     CONST: 1,
     SMOOTH: 2
@@ -521,7 +521,6 @@ APP.special_effect_canvas.start = function () {
 		// TESTING FRAMERATE! 
     testingMsPerFrame = thisContoller.testingMsPerFrame || ms;
 		frameMod = (Math.floor(testingMsPerFrame / ms60fps) || 1);
-    console.log(testingMsPerFrame);
     // Here I am skipping frames on purpose to test what it would look like at different frame rates
 		if (testingMsPerFrame && thisContoller.p_iDrawCount % frameMod !== 0) {
 			// frame skipped!

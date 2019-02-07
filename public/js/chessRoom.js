@@ -12,7 +12,7 @@ var originX = document.querySelector('#left-of-board').getBoundingClientRect().r
 //			rect = canvas.getBoundingClientRect();
 //console.log(rect.top, rect.right, rect.bottom, rect.left);
 
-var c = canvas.getContext('2d');
+//var c = canvas.getContext('2d');
 
 
 const CHESS_RADIUS = 15; 
@@ -24,6 +24,31 @@ function clickSound(){
 	$("#clickSound")[0].play();
 }
 //TODO: this should be a utility function
+
+function opaqueChessBoard(){
+    var c = $('.chessBoard')[0].getContext('2d');
+    if(c){
+        c.save();
+        c.globalAlpha = 0.4;
+        chessBoard.renderNewChessboard();
+    }
+}
+
+function firework(){
+    APP.special_effect_canvas.clear();
+    APP.special_effect_canvas.init('fireworks_canvas');
+    APP.special_effect_canvas.setupEffect('fireworks', undefined, {
+            count: 1,
+            subCount: 30,
+            repeatLimit: 7,
+            hueBase: 50,//47,
+            hueVariation: 5,//10,
+            brightnessBase: 65,
+            brightnessVariation: 15,
+            lineMin: 2,
+            lineMax: 5,
+    },true);
+};
 
 
 $('#send-meg').click(function(){
@@ -114,36 +139,17 @@ socket.on('receiveMeg',function(message){
 	jQuery('#chats-container').append(html);
 });
 
-//TODO: this one has bug, fix the blurry chessBoard and add a settimeout function
-
 socket.on('gamePause',function(){
-    $('.message').append('<h2 id="pauseMeg" class="font-weight-bold text-black-50">Game paused, opponent left. <i class="fas fa-pause"></i></h2>');
+    $('.message').append('<h2 id="pauseMeg" class="font-weight-bold">Game paused, opponent left. <i class="fas fa-pause"></i></h2>');
+        
+    opaqueChessBoard();
     
-    
-//    var rect = document.querySelector('.chessBoard').getBoundingClientRect();
-//    stackBlurCanvasRGB('chessBoard', 0, 0,canvas.width,canvas.height, 10 );
 });
 
 socket.on('gameWon', function(){
     $('.message').append('<h2 id = "wonMeg">You won! <i class="fas fa-smile"></i></h2>');
     
-    
-    //fireworks speical effects
-    (function(){
-        APP.special_effect_canvas.clear();
-        APP.special_effect_canvas.init('fireworks_canvas');
-        APP.special_effect_canvas.setupEffect('fireworks', undefined, {
-                count: 1,
-                subCount: 30,
-                repeatLimit: 7,
-                hueBase: 50,//47,
-                hueVariation: 5,//10,
-                brightnessBase: 65,
-                brightnessVariation: 15,
-                lineMin: 2,
-                lineMax: 5,
-        },true);
-    })();
+    firework();
 });
 
 

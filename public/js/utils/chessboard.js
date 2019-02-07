@@ -144,7 +144,7 @@ class Chessboard{
 		
 		this.canvas.fillStyle = chess.color;
 		this.canvas.shadowBlur = 10;
-		this.canvas.shadowColor = '#88B7B5'; // the shadow arround the hovering chess
+		this.canvas.shadowColor = '#88B7B5'; // the shadow around the hovering chess
 		this.canvas.beginPath();
 		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
 		this.canvas.stroke();
