@@ -141,16 +141,26 @@ class Chessboard{
 	}
 	hoverChess(chess){
 		this.canvas.save();
-		
-		this.canvas.fillStyle = chess.color;
 		this.canvas.shadowBlur = 10;
 		this.canvas.shadowColor = '#88B7B5'; // the shadow around the hovering chess
-		this.canvas.beginPath();
-		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
-		this.canvas.stroke();
-		this.canvas.fill();
+		this.drawChess(chess);
+//		this.canvas.beginPath();
+//		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
+//		this.canvas.stroke();
+//		this.canvas.fill();
 		
 		this.canvas.restore();
+	}
+	errChess(chessObj){
+		x = chessObj.x;
+		y = chessObj.y;
+		var img = new Image;
+		img.onload = function(){
+			let c = this.canvas.getContext('2d');
+			c.drawImage(img,x,y);
+		}
+//		img.src = ''
+//		this.canvas.drawImage(x,y);
 	}
 	click(mouse){
 		var chessObj = this.update(mouse);
@@ -163,5 +173,5 @@ class Chessboard{
 			this.hoverChess(chessObj.chess);
 		}
 	}
-	
+
 }

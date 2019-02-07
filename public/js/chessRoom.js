@@ -12,9 +12,7 @@ var originX = document.querySelector('#left-of-board').getBoundingClientRect().r
 //			rect = canvas.getBoundingClientRect();
 //console.log(rect.top, rect.right, rect.bottom, rect.left);
 
-//var c = canvas.getContext('2d');
-
-
+const C = canvas.getContext('2d');
 const CHESS_RADIUS = 15; 
 const INTERVAL = (canvas.width - 2 * 20) / 18;
 
@@ -25,13 +23,15 @@ function clickSound(){
 }
 //TODO: this should be a utility function
 
+
+
+//	$('.chessBoard').css('cursor', 'url(assets/cursors/error-cursor.png),auto');
+
+
 function opaqueChessBoard(){
-    var c = $('.chessBoard')[0].getContext('2d');
-    if(c){
-        c.save();
-        c.globalAlpha = 0.4;
-        chessBoard.renderNewChessboard();
-    }
+	C.save();
+	C.globalAlpha = 0.4;
+	chessBoard.renderNewChessboard();
 }
 
 function firework(){
@@ -61,7 +61,7 @@ $('#send-meg').click(function(){
 });
 
 function createChessBoard(color){
-	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color,originX,0);
+	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,C,canvas.width,canvas.height,color,originX,0);
 	//there should be no margin in y axis
 	chessBoard.renderNewChessboard();
 	$('.chessBoard').css('cursor', 'none');
@@ -77,10 +77,18 @@ function createChessBoard(color){
 		var chessObj = chessBoard.click(event);
 		if(chessObj){
 			socket.emit('click',chessObj,color,function(err,chessRecord){
+				chessBoard.errChess();
 				if(!err){
 					chessBoard.renderNewChessboard(chessRecord);
-					clickSound();
+					clickSound(); // TODO: this one can run if the server is down and err is undefined
 				}
+				else{
+					chessBoard.errChess(chessObj);
+//						$('.chessBoard').css('cursor', 'url(assets/cursors/error-cursor.png),auto'); // Too ugly fix that
+//						setTimeout(function(){
+//							$('.chessBoard').css('cursor', 'none');
+//						},1000);
+					}
 			});
 		}
 	});
