@@ -21,12 +21,7 @@ class Chessboard{
 			this.pointArr[i] = new Array(LINES);
 		}
 		for(var i=0;i<this.chessArr.length;i++){
-			
 			this.chessArr[i] = new Array(LINES);
-    		for(var j=0;j<this.chessArr[i].length;j++){
-        		var chess = new Chess(this.margin+this.interval*i,this.margin+this.interval*j, this.chessRadius, undefined);
-        		this.chessArr[i][j] = chess;
-			}
 		}
 	}
 	addChess(x,y,color){
@@ -42,18 +37,20 @@ class Chessboard{
 	update(mouse){
 		var x = mouse.x - this.originX;
 		var y = mouse.y - this.originY;
-		//TODO: this method has some performace issues
-		for(var i =0;i<this.chessArr.length;i++){
-			for(var j = 0; j<this.chessArr[i].length;j++){
-				if(y - this.chessArr[i][j].y < this.interval/2 && y - this.chessArr[i][j].y > -this.interval/2
-					&& x - this.chessArr[i][j].x < this.interval/2 && x - this.chessArr[i][j].x > -this.interval/2){
-					var chessObj = {
-						x:i,
-						y:j,
-						chess:new Chess(this.chessArr[i][j].x,this.chessArr[i][j].y, this.chessRadius, this.color)
+		for(var i =0;i<LINES;i++){
+			var chessX = this.margin+this.interval*i;
+			if( x - chessX < this.interval/2 && x - chessX > -this.interval/2){
+				for(var j = 0; j<LINES;j++){
+					var chessY = this.margin+this.interval*j;
+					if(y - chessY < this.interval/2 && y - chessY > -this.interval/2){
+						var chessObj = {
+							x:i,
+							y:j,
+							chess:new Chess(chessX,chessY, this.chessRadius, this.color)
+						}
+			
+						return chessObj;
 					}
-
-					return chessObj;
 				}
 			}
 		}
@@ -143,12 +140,10 @@ class Chessboard{
 		this.canvas.save();
 		this.canvas.shadowBlur = 10;
 		this.canvas.shadowColor = '#88B7B5'; // the shadow around the hovering chess
+		this.canvas.globalAlpha = '0.6';
+		this.canvas.strokeStyle= '#88B7B5';
+		this.canvas.lineWidth = '4';
 		this.drawChess(chess);
-//		this.canvas.beginPath();
-//		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
-//		this.canvas.stroke();
-//		this.canvas.fill();
-		
 		this.canvas.restore();
 	}
 	errChess(chessObj){
@@ -168,6 +163,7 @@ class Chessboard{
 	}
 	hover(mouse){
 		var chessObj = this.update(mouse);
+		console.log(chessObj);
 		if(chessObj){
 			this.renderNewChessboard();
 			this.hoverChess(chessObj.chess);

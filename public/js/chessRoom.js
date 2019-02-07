@@ -2,8 +2,7 @@
 var socket = io();
 //------- begin of the chessBoard -------
 var canvas = document.querySelector('.chessBoard');
-var length = window.innerHeight<window.innerWidth ? window.innerWidth : window.innerHeight;
-var width = canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
+canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
 
 var originX = document.querySelector('#left-of-board').getBoundingClientRect().right;
 
@@ -65,6 +64,10 @@ function createChessBoard(color){
 	//there should be no margin in y axis
 	chessBoard.renderNewChessboard();
 	$('.chessBoard').css('cursor', 'none');
+	$('.chessBoard').resize(function(){
+		console.log('working');
+		chessBoard.originX = document.querySelector('#left-of-board').getBoundingClientRect().right;
+	});
 	$('.chessBoard').mouseleave(function(){
 		chessBoard.renderNewChessboard(); // this prevents a chess being drawn when the cursor leaves the chessBoard
 	});
@@ -77,13 +80,12 @@ function createChessBoard(color){
 		var chessObj = chessBoard.click(event);
 		if(chessObj){
 			socket.emit('click',chessObj,color,function(err,chessRecord){
-				chessBoard.errChess();
 				if(!err){
 					chessBoard.renderNewChessboard(chessRecord);
 					clickSound(); // TODO: this one can run if the server is down and err is undefined
 				}
 				else{
-					chessBoard.errChess(chessObj);
+//					chessBoard.errChess(chessObj);
 //						$('.chessBoard').css('cursor', 'url(assets/cursors/error-cursor.png),auto'); // Too ugly fix that
 //						setTimeout(function(){
 //							$('.chessBoard').css('cursor', 'none');
@@ -92,7 +94,7 @@ function createChessBoard(color){
 			});
 		}
 	});
-
+	
 	
 	socket.on('initChess',function(chessRecord){
 		for(var i =0;i<chessRecord.colorArr.length;i++){
