@@ -33,4 +33,27 @@ body {
 	transform: translate(-50%, -50%);
 }
 
+#right-of-board{
+	height: 100%;
+	flex-basis: 25%
+}
 
+#ppl-container {
+	
+}
+
+#chats-container {
+	flex-basis: 400px
+}
+
+#chats-container li {
+	width: 100%;
+}
+
+#message-post{
+
+}
+
+p{
+	width: 100px;
+}
