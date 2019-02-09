@@ -135,17 +135,31 @@ class Chessboard{
 		this.canvas.beginPath();
 		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
 		this.canvas.stroke();
-		this.canvas.fill();
-		
+        this.canvas.fill();
+        this.canvas.closePath();
+
+//        this.canvas.beginPath();
+//        
+//        var grd = this.canvas.createRadialGradient(75, 50, 5, 90, 60, 100);
+//        grd.addColorStop(0, "red");
+//grd.addColorStop(1, "white");
+//        this.canvas.strokeStyle = grd;
+//		this.canvas.arc(chess.x-2,chess.y-2,chess.radius,3*Math.PI/2,false);
+
+//        this.canvas.fillRect(10, 10, 150, 100);
+
+		this.canvas.stroke();
+        
+        
 		this.canvas.restore();
 	}
 	hoverChess(chess){
 		this.canvas.save();
 		this.canvas.shadowBlur = 10;
 		this.canvas.shadowColor = '#88B7B5'; // the shadow around the hovering chess
-		this.canvas.globalAlpha = '0.6';
-		this.canvas.strokeStyle= '#88B7B5';
-		this.canvas.lineWidth = '4';
+		this.canvas.globalAlpha = 0.6;
+		this.canvas.strokeStyle= '#45B7B5';
+//		this.canvas.lineWidth = 4;
 		this.drawChess(chess);
 		this.canvas.restore();
 	}
