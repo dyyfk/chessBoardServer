@@ -62,10 +62,10 @@ io.on('connection', (socket)=>{
 		callback();
 	});
 	
-	socket.on('click',(chessObj,callback)=>{
+	socket.on('click',(chessObj,color,callback)=>{
 		var x = chessObj.x;
 		var y = chessObj.y;
-		var color = chessObj.color;
+		chessObj.color = color;
 		var user = users.getUser(socket.id);
 		var chessRecord;
 

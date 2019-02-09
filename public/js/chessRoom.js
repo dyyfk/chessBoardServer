@@ -2,7 +2,8 @@
 var socket = io();
 //------- begin of the chessBoard -------
 var canvas = document.querySelector('.chessBoard');
-canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
+var length = window.innerHeight<window.innerWidth ? window.innerWidth : window.innerHeight;
+var width = canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
 
 var originX = document.querySelector('.chessBoard').getBoundingClientRect().left;
 
@@ -11,7 +12,9 @@ var originX = document.querySelector('.chessBoard').getBoundingClientRect().left
 //			rect = canvas.getBoundingClientRect();
 //console.log(rect.top, rect.right, rect.bottom, rect.left);
 
-var C = canvas.getContext('2d');
+var c = canvas.getContext('2d');
+
+
 const CHESS_RADIUS = 15; 
 const INTERVAL = (canvas.width - 2 * 20) / 18;
 
@@ -22,15 +25,13 @@ function clickSound(){
 }
 //TODO: this should be a utility function
 
-
-
-//	$('.chessBoard').css('cursor', 'url(assets/cursors/error-cursor.png),auto');
-
-
 function opaqueChessBoard(){
-	C.save();
-	C.globalAlpha = 0.4;
-	chessBoard.renderNewChessboard();
+//    var c = $('.chessBoard')[0].getContext('2d');
+//    if(c){
+        c.save();
+        c.globalAlpha = 0.4;
+        chessBoard.renderNewChessboard();
+//    }
 }
 
 function firework(){
@@ -60,43 +61,30 @@ $('#send-meg').click(function(){
 });
 
 function createChessBoard(color){
-	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,C,canvas.width,canvas.height,color,originX,0);
+	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color,originX,0);
 	//there should be no margin in y axis
 	chessBoard.renderNewChessboard();
 	$('.chessBoard').css('cursor', 'none');
-	$('.chessBoard').resize(function(){
-		console.log('working');
-//		chessBoard.originX = document.querySelector('#left-of-board').getBoundingClientRect().right;
-	});
 	$('.chessBoard').mouseleave(function(){
 		chessBoard.renderNewChessboard(); // this prevents a chess being drawn when the cursor leaves the chessBoard
 	});
 	
 	canvas.addEventListener('mousemove',function(event){
-        console.log(event.x);
-        console.log(event.y);
 		chessBoard.hover(event); 
 	});
 
 	canvas.addEventListener('click', function(event){
 		var chessObj = chessBoard.click(event);
 		if(chessObj){
-			socket.emit('click',chessObj,function(err,chessRecord){
+			socket.emit('click',chessObj,color,function(err,chessRecord){
 				if(!err){
 					chessBoard.renderNewChessboard(chessRecord);
-					clickSound(); // TODO: this one can run if the server is down and err is undefined
+					clickSound();
 				}
-				else{
-//					chessBoard.errChess(chessObj);
-//						$('.chessBoard').css('cursor', 'url(assets/cursors/error-cursor.png),auto'); // Too ugly fix that
-//						setTimeout(function(){
-//							$('.chessBoard').css('cursor', 'none');
-//						},1000);
-					}
 			});
 		}
 	});
-	
+
 	
 	socket.on('initChess',function(chessRecord){
 		for(var i =0;i<chessRecord.colorArr.length;i++){
