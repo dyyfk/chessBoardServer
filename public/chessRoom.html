@@ -18,7 +18,7 @@
 	
 	<div class="container-fluid chess-room">
 		<div class="d-flex flex-row justify-content-center ">
-			<div id="left-of-board" class="d-flex flex-column img-container flex-grow-1">
+			<div id="left-of-board" class="d-flex flex-column img-container flex-shrink-0">
 				<div id="avatars" class="d-flex flex-row align-items-center">
 					<img class="img-thumbnail" id="black-avatar" src="assets/img/black.png" alt="black">
 					<img class="img-thumbnail" id="white-avatar" src="assets/img/white.png" alt ="white">
@@ -29,84 +29,35 @@
 					<button class="btn btn-dark">call a draw</button>
 				</div>
 			</div>
-
 			<canvas class="d-inline-block chessBoard hoverable ml-2 mr-2"/>
 
-			<div id="right-of-board" class="d-flex flex-column flex-grow-1 ">
+			<div id="right-of-board" class="d-flex flex-column flex-grow-0 flex-shrink-0">
 				<div id="ppl-container" class="flex-grow-1"></div>
-				<div id="chats-container" class="flex-grow-1">
-
-                </div>
-				<div id="message-post" class="d-flex flex-row form-inline">				
+				<div id="chats-container" class="flex-grow-0 flex-shrink-0 "></div>
+				<div id="message-post" class="d-flex flex-row justify-content-end form-inline">				
 					<input class ="form-control form-control-sm flex-grow-1" id="text-meg" autocomplete="off" />
-					<div class="py-4">
+					<div class="py-4 flex-grow-*">
 						<a class="btn btn-sm btn-outline-black waves-effect" id="send-meg"><strong>send</strong></a>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="message" />
 
-
-	
-	
-<!--
-	<div class="container-fluid">
-		<div class ="message" /> 	
-			<div class="row justify-content-center">
-				
-				<div class="chess-room">
-				<div class="d-inline-block tool-left ">
-					<div class="d-flex">
-						<div class="img-container">
-								<img class="img-thumbnail" id="black-avatar" src="assets/img/black.png" alt="black">
-								<img class="img-thumbnail" id="white-avatar" src="assets/img/white.png" alt ="white">
-						</div>
-						<div class="d-flex">
-							<div class="flex-column btn-toolbar">
-								<button class="btn btn-dark">judgement</button>
-								<button class="btn btn-dark">resign</button>
-								<button class="btn btn-dark">call a draw</button>
-							</div>
-
-						</div>
-					</div>
-				</div>
-					
-				<canvas class="d-inline-block chessBoard " />
-	
-				<div class="d-inline-block tool-right ">
-					<div class="textarea">
-					</div>
-					<div class="form-inline">
-						<input class ="form-control form-control-sm" id="Input" />
-					  <div class="py-4">
-						<a class="btn btn-sm btn-outline-black waves-effect"><strong>send</strong></a>
-						</div>
-
-					</div>
-				</div>
-				</div>
-		</div>
-	</div>
--->
-	
         <script id="message-template" type="text/template">
-                        <ul id="chats-container" class="list-unstyled chat ">
-                            <li class="mb-4">
-                                <div class="chat-body white p-3 ml-2 z-depth-1">
+                        <ul id="chats-container" class="list-group chat overflow-auto">
+                            <li class="list-group-item">
+                                <!-- <div class="chat-body white p-3 ml-2 z-depth-1"> -->
                                     <div class="header">
                                       <strong class="primary-font">{{from}}</strong>
                                       <small class="pull-right text-muted"><i class="far fa-clock"></i>{{createdAt}}</small>
                                     </div>
-                                <hr class="w-100">
-                                    <p class="mb-0 ">{{text}}</p>
-                                </div>
+                                <!-- <hr class="w-100"> -->
+                                    <p class="mb-0 w-100">{{text}}</p>
+                                <!-- </div> -->
                             </li> 
                         </ul>
-
 		</script>
 	
 	
