@@ -66,7 +66,7 @@ function createChessBoard(color){
 	$('.chessBoard').css('cursor', 'none');
 	$('.chessBoard').resize(function(){
 		console.log('working');
-		chessBoard.originX = document.querySelector('#left-of-board').getBoundingClientRect().right;
+//		chessBoard.originX = document.querySelector('#left-of-board').getBoundingClientRect().right;
 	});
 	$('.chessBoard').mouseleave(function(){
 		chessBoard.renderNewChessboard(); // this prevents a chess being drawn when the cursor leaves the chessBoard

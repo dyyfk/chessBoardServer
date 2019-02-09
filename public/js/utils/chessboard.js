@@ -30,7 +30,7 @@ class Chessboard{
 		}
 		if(!this.pointArr[x][y]){
 			this.pointArr[x][y] = true;
-			this.chessArr[x][y].color = color;
+			this.chessArr[x][y] = new Chess(x,y,color,this.chessRadius);
 		}
 		this.renderNewChessboard();
 	}
@@ -46,7 +46,7 @@ class Chessboard{
 						var chessObj = {
 							x:i,
 							y:j,
-							chess:new Chess(chessX,chessY, this.chessRadius, this.color)
+							chess:new Chess(chessX,chessY,this.color, this.chessRadius)
 						}
 			
 						return chessObj;
@@ -92,8 +92,9 @@ class Chessboard{
 			for(var i = 0; i<chessRecord.colorArr.length; i++){
 				for(var j = 0; j<chessRecord.colorArr[i].length; j++){
 					if(chessRecord.colorArr[i][j]){
+                        var color = chessRecord.colorArr[i][j];
 						this.pointArr[i][j] = true;
-						this.chessArr[i][j].color = chessRecord.colorArr[i][j];
+						this.chessArr[i][j] = new Chess(i,j,color,this.chessRadius);
 					}
 				}
 			}
@@ -119,7 +120,7 @@ class Chessboard{
 		for(var i = 0; i<this.pointArr.length;i++){
 			for(var j =0;j<this.pointArr[i].length;j++){
 				if(this.pointArr[i][j]){		
-					this.drawChess(this.chessArr[i][j]);
+					this.drawChess(this.chessArr[i][j].color);
 				}
 			}
 		}
@@ -127,7 +128,10 @@ class Chessboard{
 	}
 	drawChess(chess){
 		this.canvas.save();
-
+        
+//        console.log(chess.x);
+//        console.log(chess.y);
+//        console.log(chess.color);
 		this.canvas.fillStyle = chess.color;
 		this.canvas.beginPath();
 		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
@@ -163,7 +167,6 @@ class Chessboard{
 	}
 	hover(mouse){
 		var chessObj = this.update(mouse);
-		console.log(chessObj);
 		if(chessObj){
 			this.renderNewChessboard();
 			this.hoverChess(chessObj.chess);
