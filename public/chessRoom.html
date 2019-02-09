@@ -20,16 +20,31 @@
 	<div class="container-fluid chess-room">
 		<div class="d-flex flex-row justify-content-center">
 			<div id="left-of-board" class="d-flex flex-column img-container flex-shrink-0">
-				<div id="avatars" class="d-flex flex-row align-items-center justify-content-between">
-					<img class="img-thumbnail" id="black-avatar" src="assets/img/black.png" alt="black">
-					<img class="img-thumbnail" id="white-avatar" src="assets/img/white.png" alt ="white">
-				</div>
-				<div class="timer-container rounded bg-primary text-white pt-2 px-3 mt-3">
-						<p class="fas fa-minus-circle text-light"></p>
-						<div class="timer rounded bg-dark p-2 my-2 text-center">
-						  <time class="">136 : 56</time>
+				<div id="avatars" class="d-flex flex-row align-items-center justify-content-around"></div>
+
+
+				<div class="timer-container rounded bg-light text-dark pt-2 px-2 mt-3">
+						<p class="fas fa-minus-circle text-white"></p>
+					<div class="d-flex mb-2 flex-row justify-content-between align-items-center ">
+						<img class="stone" id="black-avatar" src="assets/img/black.png" alt="black">
+						<div class="timer p-2  text-center">
+						  <time class="">136 : 56 : 03</time>
 						</div>
+					</div>
 				</div>
+
+
+				<div class="timer-container rounded bg-white pt-2 px-2 mt-3">
+						<p class="fas fa-minus-circle text-dark"></p>
+					<div class="d-flex mb-2 justify-content-between align-items-center">	
+						<img class="stone" id="white-avatar" src="assets/img/white.png" alt ="white">					
+						<div class="timer p-2 text-center text-dark">
+						  <time class="">136 : 56 : 03</time>
+						</div>						
+					</div>
+				</div>
+
+
 				<div id="function-btns" class="d-flex flex-column btn-toolbar mt-auto">
 					<button class="btn btn-dark">judgement</button>
 					<button class="btn btn-dark">resign</button>
