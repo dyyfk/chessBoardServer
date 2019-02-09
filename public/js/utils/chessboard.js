@@ -48,8 +48,6 @@ class Chessboard{
 							y:j,
 							chess:new Chess(chessX,chessY,this.color, this.chessRadius)
 						}
-			
-						return chessObj;
 					}
 				}
 			}
@@ -128,16 +126,12 @@ class Chessboard{
 	}
 	drawChess(chess){
 		this.canvas.save();
-        
-//        console.log(chess.x);
-//        console.log(chess.y);
-//        console.log(chess.color);
 		this.canvas.fillStyle = chess.color;
 		this.canvas.beginPath();
 		this.canvas.arc(chess.x,chess.y,chess.radius,Math.PI*2,false);
 		this.canvas.stroke();
 		this.canvas.fill();
-		
+		this.canvas.closePath();
 		this.canvas.restore();
 	}
 	hoverChess(chess){

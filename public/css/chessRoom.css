@@ -57,6 +57,12 @@ body {
 .timer-container{
 	box-shadow:0 2px 10px 1px rgba(50,70,112,.4);
   }
+
   .timer{
 	box-shadow:0 2px 10px 1px rgba(30,45,86,.8);
   }
+#text-area{
+    word-wrap: break-word
+}
+
+

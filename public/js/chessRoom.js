@@ -4,14 +4,14 @@ var socket = io();
 var canvas = document.querySelector('.chessBoard');
 canvas.width = canvas.height = window.innerHeight>window.innerWidth ? window.innerWidth : window.innerHeight;
 
-var originX = document.querySelector('#left-of-board').getBoundingClientRect().right;
+var originX = document.querySelector('.chessBoard').getBoundingClientRect().left;
 
 
 //
 //			rect = canvas.getBoundingClientRect();
 //console.log(rect.top, rect.right, rect.bottom, rect.left);
 
-const C = canvas.getContext('2d');
+var C = canvas.getContext('2d');
 const CHESS_RADIUS = 15; 
 const INTERVAL = (canvas.width - 2 * 20) / 18;
 
@@ -73,13 +73,15 @@ function createChessBoard(color){
 	});
 	
 	canvas.addEventListener('mousemove',function(event){
+        console.log(event.x);
+        console.log(event.y);
 		chessBoard.hover(event); 
 	});
 
 	canvas.addEventListener('click', function(event){
 		var chessObj = chessBoard.click(event);
 		if(chessObj){
-			socket.emit('click',chessObj,color,function(err,chessRecord){
+			socket.emit('click',chessObj,function(err,chessRecord){
 				if(!err){
 					chessBoard.renderNewChessboard(chessRecord);
 					clickSound(); // TODO: this one can run if the server is down and err is undefined
