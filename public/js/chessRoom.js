@@ -136,7 +136,7 @@ socket.on('receiveMeg',function(message){
 		createdAt: formattedTime
 	});
 	
-	jQuery('#chats-container').append(html);
+	jQuery('.chat').append(html);
 });
 
 socket.on('gamePause',function(){
