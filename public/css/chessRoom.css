@@ -40,7 +40,7 @@ body {
 	height: 95%
 }
 */
-p{
+.chat p{
 	word-break: break-word
 }
 

@@ -31,7 +31,7 @@ io.on('connection', (socket)=>{
 		var name = params.name;
 		var room = params.room;
 		var isPlayer = params.isPlayer;
-		
+		var message = params.message;
 		socket.join(room);
 
 		users.removeUser(socket.id);
@@ -45,7 +45,7 @@ io.on('connection', (socket)=>{
 			return callback('this room has already 2 players');
 		}else if(playerInRoom.length<=1){
 			console.log('Waiting for another player');
-			socket.emit('waitingPlayer');
+			socket.emit('waitingPlayer',(message));
 		}else if(playerInRoom.length==2){
 			console.log('Game Started');
 			chessRecords.addRecord(socket.id, room);

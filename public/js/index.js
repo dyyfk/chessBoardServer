@@ -17,6 +17,8 @@ $(function(){
 				'background':'linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7)), url(assets/img/bg-chess-room.jpg)center/cover fixed no-repeat'
 			});
 		}
+		
+		
 		var name = $('#name-field');
 		var room = $('#room-field');
 		var player = $('#player-field');
@@ -26,7 +28,8 @@ $(function(){
 			socket.emit('join',	{
 				room: room.val(),
 				name: name.val(),
-				isPlayer: player.val() === 'on' ? true : false
+				isPlayer: player.val() === 'on' ? true : false,
+				message: 'Good ' + (isDayTime ? 'morning, ' : 'evening, ') + name.val() 
 			}, function(err){
 					if(err){
 						window.location.href = '/';

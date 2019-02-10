@@ -116,11 +116,14 @@ socket.on('gameBegin',function(color){
 	},1000)
 });
 
-socket.on('waitingPlayer',function(){
+socket.on('waitingPlayer',function(message){
 	$('.chess-room').hide();
 	$('.index-container').remove();
-	$('.message').append('<h2 id = "waitingMeg">Waiting for players... </h2>');
-	$('#waitingMeg').append('<div class="fa fa-spinner fa-spin"></div>');
+	var line1 = $('<h1></h1>').text(message);
+	var line2 = $('<h2></h2>').text('Waiting for players...');
+	line2.append('<div class="fa fa-spinner fa-spin"></div>');
+	var html = $('<div id = "waitingMeg"></div>').append(line1).append(line2);
+	$('.message').append(html);
 });
 
 
