@@ -11,7 +11,8 @@ $(function(){
 		var room = $('#room-field');
 		var player = $('#player-field');
 		$('.index-container').remove();
-		$('body').load( '/chessRoom.html' ,function(){
+        $('body').sakura();
+        $('body').load( '/chessRoom.html' ,function(){
 			socket.emit('join',	{
 				room: room.val(),
 				name: name.val(),
@@ -21,6 +22,7 @@ $(function(){
 						window.location.href = '/';
 						alert(err);
 					}
+				
 				}
 			);
 		});

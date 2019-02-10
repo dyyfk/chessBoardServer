@@ -110,6 +110,7 @@ socket.on('gameBegin',function(color){
 	createChessBoard(color);
 	$('.chess-room').hide();
 	$('#waitingMeg').remove();
+	$('body').sakura('stop');
 	$('.message').append('<h2 id = "beginMeg">Players ready, game begin</h2>');
 	$('.message').hide().show('slow');
 	setTimeout(function(){
