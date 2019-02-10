@@ -23,15 +23,12 @@ var chessBoard;
 function clickSound(){
 	$("#clickSound")[0].play();
 }
-//TODO: this should be a utility function
 
+//TODO: this should be a utility function
 function opaqueChessBoard(){
-//    var c = $('.chessBoard')[0].getContext('2d');
-//    if(c){
         c.save();
         c.globalAlpha = 0.4;
         chessBoard.renderNewChessboard();
-//    }
 }
 
 function firework(){

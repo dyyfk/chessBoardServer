@@ -10,8 +10,7 @@
 
 body {
   /* The image used */  /* Center and scale the image nicely */
-	background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7))
-    ,url(../assets/img/bg-chess-room.jpg)center/cover fixed no-repeat;
+
 	overflow: hidden;
 }
 	
