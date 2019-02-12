@@ -10,6 +10,7 @@ const {ChessRecords} = require('./utils/chessRecords');
 const {Users} = require('./utils/users');
 const authRoutes = require('./routes/auth-routes');
 const passportSetup = require('./config/passport-setup');
+const keys = require('./config/keys');
 var app = express();
 
 app.set('view engine', 'ejs');
@@ -29,6 +30,10 @@ var chessRecords = new ChessRecords();
 
 app.get('/',(req,res)=>{
 	res.render('home');
+});
+
+mongoose.connect(keys.mongodb.dburl,()=>{
+	console.log('connected to mongodb');
 });
 
 
