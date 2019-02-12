@@ -23,6 +23,16 @@ var chessBoard;
 function clickSound(){
 	$("#clickSound")[0].play();
 }
+$(function(){
+	$('#timer-toggle-1').unbind('click').click(function(){
+		$('#timer-b-container').slideToggle();
+	});
+	$('#timer-toggle-2').unbind('click').click(function(){
+		$('#timer-w-container').slideToggle();
+	});
+});
+
+
 
 //TODO: this should be a utility function
 function opaqueChessBoard(){
