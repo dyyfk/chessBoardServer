@@ -3,22 +3,34 @@ const express = require('express');
 const socketIO = require('socket.io');
 const http = require('http');
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
 const publicPath = path.join(__dirname, '../public');
+const passport = require('passport');
 const port = process.env.PORT || 3000;
 const {ChessRecords} = require('./utils/chessRecords');
 const {Users} = require('./utils/users');
 const authRoutes = require('./routes/auth-routes');
+const profileRoutes = require('./routes/profile-routes');
 const passportSetup = require('./config/passport-setup');
 const keys = require('./config/keys');
 var app = express();
 
+app.use(express.static(publicPath));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(cookieSession({
+	maxAge: 24 * 60 * 60 * 1000,
+	keys:[keys.session.cookieKey]
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+		
 app.use('/auth',authRoutes);
-app.use(express.static(publicPath));
+app.use('/profile',profileRoutes);
 
 
 var server = http.createServer(app);
@@ -32,7 +44,12 @@ app.get('/',(req,res)=>{
 	res.render('home');
 });
 
-mongoose.connect(keys.mongodb.dburl,()=>{
+app.get('/login',(req,res)=>{
+	res.render('login');
+});
+
+
+mongoose.connect(keys.mongodb.dburl,{ useNewUrlParser: true },()=>{
 	console.log('connected to mongodb');
 });
 

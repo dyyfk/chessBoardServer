@@ -20,26 +20,44 @@ const INTERVAL = (canvas.width - 2 * 20) / 18;
 
 var chessBoard;
 
-function clickSound(){
-	$("#clickSound")[0].play();
+function chessSound(){
+	$("#chessSound")[0].play();
 }
-$(function(){
+function clickSound(){
+	$("#clickSound")[0].play();// TODO: add this sound to indicate error when placeing chess
+}
+
+function opaqueChessBoard(){
+	c.save();
+	c.globalAlpha = 0.4;
+	chessBoard.renderNewChessboard();
+}
+
+
+
+$(document).ready(function(){
 	$('#timer-toggle-1').unbind('click').click(function(){
 		$('#timer-b-container').slideToggle();
 	});
 	$('#timer-toggle-2').unbind('click').click(function(){
 		$('#timer-w-container').slideToggle();
 	});
+	
+//	$('body').click(clickSound);//
 });
 
 
 
+$('#send-meg').click(function(){
+    var input =  $('#text-meg').val();
+    var message = {
+        text: input,
+        createAt: Date.now()
+    }
+    socket.emit('sendMeg',message);
+});
+
 //TODO: this should be a utility function
-function opaqueChessBoard(){
-        c.save();
-        c.globalAlpha = 0.4;
-        chessBoard.renderNewChessboard();
-}
 
 function firework(){
     APP.special_effect_canvas.clear();
@@ -57,15 +75,6 @@ function firework(){
     },true);
 };
 
-
-$('#send-meg').click(function(){
-    var input =  $('#text-meg').val();
-    var message = {
-        text: input,
-        createAt: Date.now()
-    }
-    socket.emit('sendMeg',message);
-});
 
 function createChessBoard(color){
 	chessBoard = new Chessboard(INTERVAL, CHESS_RADIUS,c,canvas.width,canvas.height,color,originX,0);
@@ -86,7 +95,7 @@ function createChessBoard(color){
 			socket.emit('click',chessObj,color,function(err,chessRecord){
 				if(!err){
 					chessBoard.renderNewChessboard(chessRecord);
-					clickSound();
+					chessSound();
 				}
 			});
 		}
@@ -105,7 +114,7 @@ function createChessBoard(color){
 
 	socket.on('updateChess',function(chessRecord){
 		chessBoard.renderNewChessboard(chessRecord);
-		clickSound();
+		chessSound();
 	});
 }
 //-----end of the chessBoard ----
