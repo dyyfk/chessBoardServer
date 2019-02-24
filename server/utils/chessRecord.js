@@ -46,7 +46,6 @@ class ChessRecord{
 		if(!valid) {
 			this.colorArr[x][y] = null;
 			return 'No escape, Cannot place chess here';
-			// "ko" or 'da Jie' in Chinese should be handled here
 		}
 		this.nextRound = this.nextRound === Color.black ? Color.white : Color.black;
 		
@@ -56,7 +55,7 @@ class ChessRecord{
 		this.joinedChess = [];
 		var escape = this.escapeHelper(x,y,color,0);
 		return escape !== 0;
-		// if a chess is surrounede
+		// if a chess is surrounded
 
 	}
 	determineCapture(x,y,color){

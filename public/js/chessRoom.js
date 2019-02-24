@@ -8,14 +8,13 @@ var width = canvas.width = canvas.height = window.innerHeight>window.innerWidth 
 var originX = document.querySelector('.chessBoard').getBoundingClientRect().left;
 
 
-//
 //			rect = canvas.getBoundingClientRect();
 //console.log(rect.top, rect.right, rect.bottom, rect.left);
 
 var c = canvas.getContext('2d');
 
 
-const CHESS_RADIUS = 15; 
+const CHESS_RADIUS = 20; 
 const INTERVAL = (canvas.width - 2 * 20) / 18;
 
 var chessBoard;

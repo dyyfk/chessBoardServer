@@ -14,6 +14,7 @@ const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
 const passportSetup = require('./config/passport-setup');
 const keys = require('./config/keys');
+
 var app = express();
 
 app.use(express.static(publicPath));
@@ -48,6 +49,13 @@ app.get('/login',(req,res)=>{
 	res.render('login');
 });
 
+app.get('/chessRoom',(req,res)=>{
+	res.render('chessRoom');
+});
+
+app.get('/waiting',(req,res)=>{
+	res.render('waiting');
+});
 
 mongoose.connect(keys.mongodb.dburl,{ useNewUrlParser: true },()=>{
 	console.log('connected to mongodb');
