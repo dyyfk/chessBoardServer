@@ -48,3 +48,17 @@ form {
     font-size: 20pt;
 }
 
+/* #PROFILE{
+    position: absolute;
+    display: block;
+    box-shadow: 0 0;
+} */
+
+.navi{ 
+    position: absolute;
+    right: 0;
+}
+.but{
+    /* display: block; */
+    box-shadow: 0 0;
+}
