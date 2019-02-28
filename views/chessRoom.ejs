@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+	<link type="text/css" rel="stylesheet" href="css/chessRoom.css">
+<!--	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">-->
+	<audio id="chessSound" src="assets/sounds/chess.mp3"> </audio>
+	<audio id="clickSound" src="assets/sounds/click.mp3"> </audio>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+      <!-- Bootstrap core CSS -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Material Design Bootstrap -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/css/mdb.min.css" rel="stylesheet">
+</head>
+<body>
+<!--
+	<div class="nav-container">
+		<nav>
+			<i class="fas fa-cog" id ="options"></i>
+		</nav>
+	</div>
+-->
+<!--	<div id="bg" /> -->
+	
+	<div class="container-fluid chess-room">
+		<div class="d-flex flex-row justify-content-center">
+
+			<div id="left-of-board" class="d-flex flex-column img-container flex-shrink-0">
+				<div id="avatars" class="d-flex flex-row align-items-center justify-content-around"></div>
+
+
+				<div class="timer-container rounded bg-light text-dark pt-2 px-2 mt-3">
+						<p id = "timer-toggle-1" class="fas fa-minus-circle text-white"></p>
+					<div id ="timer-b-container" class="d-flex mb-2">
+						<img class="stone" id="black-avatar" src="assets/img/black.png" alt="black">
+						<div id="timer-b" class="timer p-2  text-center">
+						  <time class="">136 : 56 : 03</time>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="timer-container rounded bg-white pt-2 px-2 mt-3">
+						<p id = "timer-toggle-2" class="fas fa-minus-circle text-dark"></p>
+					<div id="timer-w-container" class="d-flex mb-2">	
+						<img class="stone" id="white-avatar" src="assets/img/white.png" alt ="white">					
+						<div id ="timer-w" class="timer p-2 text-center text-dark">
+						  <time class="">136 : 56 : 03</time>
+						</div>						
+					</div>
+				</div>
+
+
+				<div id="function-btns" class="d-flex flex-column btn-toolbar mt-auto">
+					<button class="btn btn-dark">judgement</button>
+					<button class="btn btn-dark">resign</button>
+					<button class="btn btn-dark">call a draw</button>
+				</div>
+			</div>
+			<canvas class="d-inline-block chessBoard hoverable ml-4 mr-4"/>
+
+			<div id="right-of-board" class="d-flex flex-column flex-grow-1">
+<!--				<div id="ppl-container" class="flex-grow-1"></div>-->
+				<div id="chats-container" class="flex-grow-1 mt-2">
+					<ul class="list-group chat"></ul>
+				</div>
+				<div id="message-post" class="d-flex flex-row justify-content-end form-inline">				
+					<input class ="form-control form-control-sm flex-grow-1" id="text-meg" autocomplete="off" />
+					<div class="py-4">
+						<a class="btn btn-sm btn-outline-black waves-effect" id="send-meg"><strong>send</strong></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="message" />
+
+        <script id="message-template" type="text/template">
+                            <li class="list-group-item">
+                                    <div class="header">
+                                      <strong class="primary-font">{{from}}</strong>
+                                      <small class="pull-right text-muted"><i class="far fa-clock"></i>{{createdAt}}</small>
+                                    </div>
+                                    <p class="mb-0 w-100" id="text-area">{{text}}</p>
+                            </li> 
+		</script>
+	      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- Bootstrap tooltips -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+      <!-- MDB core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/js/mdb.min.js"></script>
+	  <script src ="socket.io/socket.io.js"></script>
+	  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src ="js/libs/moment.js"></script>
+	<script src ="js/libs/deparam.js"></script>
+	<script src ="js/libs/mustache.js"></script>
+	<script src="js/utils/chess.js"></script>
+	<script src="js/utils/chessboard.js"></script>
+    <script src="js/libs/fireworks.js"></script>
+    <script src="js/chessRoom.js"></script>
+</body>
+</html>
