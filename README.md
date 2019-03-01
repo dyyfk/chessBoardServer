@@ -32,6 +32,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 Special Thanks to: @TheAlmightyHelix
 
+
 ## Todo
 
 We're trying to embed the neural network of playing GO into the online platform to boost the sysmem
