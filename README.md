@@ -30,9 +30,11 @@ node server/server.js
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
-Special Thanks to: @TheAlmightyHelix
 
+Special Thanks to: @TheAlmightyHelix
 
 ## Todo
 
-We're trying to embed the neural network of playing GO into the online platform to boost the sysmem
+We're trying to embed the neural network of playing GO into the online platform to boost the sysmem.
+
+
