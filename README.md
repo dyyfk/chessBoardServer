@@ -4,11 +4,11 @@ A gaming room that enables players to play GO online using HTML, JavaScript
 
 # How we built it
 
-Database: MongoDB
+* Database: MongoDB
 
-Backend: Socket.io, Express
+* Backend: Socket.io, Express
 
-Frontend: Bootstrap, MDB Material design, jQuery, ejs
+* Frontend: Bootstrap, MDB Material design, jQuery, ejs
 
 
 ## Installation
