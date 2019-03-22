@@ -1,42 +1,42 @@
 var socket = io();
-$(function(){
-	
+$(function () {
+
 	$('.ripple').ripples();
-	
-	$('#join-btn').on('click',function(e){
+
+	$('#join-btn').on('click', function (e) {
 
 		e.preventDefault();
-		const hours = new Date().getHours()
-		const isDayTime = hours > 6 && hours < 20
-		if(!isDayTime){
+		const hours = new Date().getHours();
+		const isDayTime = hours > 6 && hours < 20;
+		if (!isDayTime) {
 			$("body").css({
-				'background':'linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)), url(assets/img/bg-chess-room-night.jpg)center/cover fixed no-repeat'
+				'background': 'linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)), url(assets/img/bg-chess-room-night.jpg)center/cover fixed no-repeat'
 			});
-		}else{
+		} else {
 			$("body").css({
-				'background':'linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7)), url(assets/img/bg-chess-room.jpg)center/cover fixed no-repeat'
+				'background': 'linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7)), url(assets/img/bg-chess-room.jpg)center/cover fixed no-repeat'
 			});
 		}
-		
-		
+
+
 		var name = $('#name-field');
 		var room = $('#room-field');
 		var player = $('#player-field');
 		$('.index-container').remove();
-        $('body').sakura();
-        $('body').load( '/chessRoom.html' ,function(){
-			socket.emit('join',	{
+		$('body').sakura();
+		$('body').load('/chessRoom.html', function () {
+			socket.emit('join', {
 				room: room.val(),
 				name: name.val(),
 				isPlayer: player.val() === 'on' ? true : false,
-				message: 'Good ' + (isDayTime ? 'morning, ' : 'evening, ') + name.val() 
-			}, function(err){
-					if(err){
-						window.location.href = '/';
-						alert(err);
-					}
-				
+				message: 'Good ' + (isDayTime ? 'morning, ' : 'evening, ') + name.val()
+			}, function (err) {
+				if (err) {
+					window.location.href = '/';
+					alert(err);
 				}
+
+			}
 			);
 		});
 	});
