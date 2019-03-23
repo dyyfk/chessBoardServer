@@ -126,6 +126,7 @@ socket.on('connect', function () {
 	console.log('Connected to server');
 });
 socket.on('gameBegin', function (color) {
+
 	createChessBoard(color);
 	$('.chess-room').hide();
 	$('#waitingMeg').remove();

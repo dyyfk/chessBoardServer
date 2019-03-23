@@ -7,6 +7,72 @@
     <!-- bootstrap framework -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- <style>
+        body {
+            padding: 5% 5% 5% 10%;
+        }
+
+        #avatar {
+            display: flex;
+            flex-direction: column;
+            width: 15%;
+            float: right;
+            box-shadow: 3px 3px 5px 0px lightgray;
+            padding: 0 0 1em 0;
+        }
+
+        #button-wrapper {
+            float: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+    </style> -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div id='dashboard' class=" col-9">
+                <div id='history'>
+                    <h2><b>Ranking</b></h2>
+                    <div id="chart" style="width: 600px; padding-top: 0"></div>
+                </div>
+                <div id='activity'>
+                    <h2><b>Activities</b></h2>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="row">
+                    <div class="col justify-content-between">
+                        <div id='avatar' class="row">
+                            <%- include('figure'); %>
+                            <div"><a>Followers</a> | <a>Following</a></div>
+                    </div>
+                    <div class="col align-items-end h-100">
+                        <div id='button-wrapper'>
+                            <button type="button" class="btn btn-raised btn-lg"><a href="/">Homepage</a></button>
+                            <button type="button" class="btn btn-raised btn-lg"><a href="/auth/logout">Log
+                                    out</a></button>
+                            <button type="button" class="btn btn-raised btn-lg"><a href="/play">play</a></button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -16,48 +82,28 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-    <style>
-        body {
-            padding: 5% 5% 5% 10%;
-        }
 
-        aside {
-            display: flex;
-            flex-direction: column;
-            width: 15%;
-            float: right;
-            box-shadow: 3px 3px 5px 0px lightgray;
-            padding: 0 0 1em 0;
-        }
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        var chart = document.getElementById('chart');
 
-        #dashboard {}
+        var trace1 = {
+            x: [1, 2, 3, 4],
+            y: [0, 2, 3, 5],
+            fill: 'tozeroy',
+            type: 'scatter'
+        };
+        var trace2 = {
+            x: [1, 2, 3, 4],
+            y: [3, 5, 1, 7],
+            fill: 'tonexty',
+            type: 'scatter'
+        };
+        var data = [trace1, trace2];
 
-        .headings {
-            font-size: 2.5em;
-            font-weight: bold;
-        }
-    </style>
-</head>
-
-<body>
-    <aside id='avatar'>
-        <%- include('figure'); %>
-        <div style="align-self: center"><a>Followers</a> | <a>Following</a></div>
-    </aside>
-    <div id='dashboard'>
-        <div id='history' class='headings'>
-            Ranking
-        </div>
-        <div id='activity' class='headings'>
-            Activities
-        </div>
-    </div>
-    <a href="/">Homepage</a>
-    <a href="/auth/logout">Log out</a>
-
+        Plotly.newPlot('chart', data, {}, { showSendToCloud: true });
+    </script>
 </body>
 
 

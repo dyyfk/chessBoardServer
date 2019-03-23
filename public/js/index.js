@@ -3,6 +3,16 @@ $(function () {
 
 	$('.ripple').ripples();
 
+	var test = false;
+
+	if (test) {
+		$('#name-field').hide();
+		$('#social a').hide();
+		// $('a').hide();
+	} else {
+
+	}
+
 	$('#join-btn').on('click', function (e) {
 
 		e.preventDefault();

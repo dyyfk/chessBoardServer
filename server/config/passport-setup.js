@@ -22,8 +22,9 @@ passport.use(
 		clientID: keys.google.clientID,
 		clientSecret: keys.google.clientSecret
 	}, (accessToken, refreshToken, profile, done) => {
+
+		console.log(profile);
 		//passport callback function
-		console.log(profile._json.image.url)
 		User.findOne({ googleId: profile.id }).then((user) => {
 			if (user) {
 				done(null, user);
