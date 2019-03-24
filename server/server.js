@@ -17,13 +17,6 @@ const keys = require('./config/keys');
 var app = express();
 
 app.use(express.static(publicPath));
-app.use(express.static(path.join(__dirname, '../public/assets')));
-console.log(path.join(__dirname, '../public/assets'));
-app.use(express.static(path.join(__dirname, '../public/js')));
-app.use(express.static(path.join(__dirname, '../public/css')));
-app.use(express.static(path.join(__dirname, '../public/js/libs')))
-
-
 
 
 app.set('view engine', 'ejs');
@@ -58,6 +51,7 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/dashboard', (req, res) => {
+
 	res.render('dashboard');
 });
 
@@ -75,7 +69,12 @@ io.on('connection', (socket) => {
 
 	console.log('New users connected');
 	app.get('/play', (req, res) => {
+		// console.log(req.session)
+
 		// users.addUser('test');
+		console.log(req.user);
+		console.log(req.isAuthenticated());
+
 		socket.emit('join', {
 			name: 'test',
 			room: 'test',
@@ -85,7 +84,6 @@ io.on('connection', (socket) => {
 		res.sendFile('chessRoom.html', { root: publicPath });
 
 		socket.emit('waitingPlayer');
-		console.log(users);
 	});
 
 	socket.on('join', (params, callback) => {
@@ -101,7 +99,6 @@ io.on('connection', (socket) => {
 		users.addUser(socket.id, name, room, isPlayer);
 		var userInRoom = users.getUserList(room);
 		var playerInRoom = users.getPlayerList(room);
-		console.log(users)
 		if (playerInRoom.length > 2) {
 			return callback('this room has already 2 players');
 		} else if (playerInRoom.length <= 1) {

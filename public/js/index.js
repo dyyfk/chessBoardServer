@@ -3,6 +3,14 @@ $(function () {
 
 	$('.ripple').ripples();
 
+	if (sessionStorage.getItem('status') != null) {
+		//redirect to page
+		alert("Is Login : True");
+	}
+	else {
+		//show validation message
+		alert("Is Login : False");
+	}
 	var test = false;
 
 	if (test) {

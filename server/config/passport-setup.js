@@ -22,8 +22,6 @@ passport.use(
 		clientID: keys.google.clientID,
 		clientSecret: keys.google.clientSecret
 	}, (accessToken, refreshToken, profile, done) => {
-
-		console.log(profile);
 		//passport callback function
 		User.findOne({ googleId: profile.id }).then((user) => {
 			if (user) {
